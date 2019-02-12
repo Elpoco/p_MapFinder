@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     DrawerLayout drawerLayout;
 
-    ImageView myPage;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer);
         toolbar=findViewById(R.id.toolbar);
         navView=findViewById(R.id.nav_view);
-        myPage=findViewById(R.id.btn_my_page);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -56,5 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickMyPage(View view) {
         drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void clickSetting(View view) {
     }
 }

@@ -13,7 +13,6 @@
         android:layout_height="?attr/actionBarSize">
 
         <ImageView
-            android:id="@+id/btn_my_page"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:onClick="clickMyPage"
@@ -33,7 +32,8 @@
             android:layout_marginRight="16dp"
             android:clickable="true"
             android:padding="8dp"
-            android:src="@drawable/click_settings" />
+            android:src="@drawable/click_settings"
+            android:onClick="clickSetting"/>
     </android.support.v7.widget.Toolbar>
 
 
