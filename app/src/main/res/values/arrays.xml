@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="map_data_a">
+        <item>ㄱ-ㄹ</item>
+        <item>갈기파도 항구</item>
+        <item>갈라진 땅</item>
+        <item>거울계곡</item>
+        <item>격전의 평야</item>
+        <item>국경지대</item>
+        <item>네벨호른</item>
+        <item>달콤한 숲</item>
+        <item>델파이현</item>
+        <item>등나무 언덕</item>
+        <item>디오리카 평원</item>
+        <item>라이아 단구</item>
+        <item>레이크바</item>
+        <item>로그힐</item>
+        <item>리제폭포</item>
+    </string-array>
+    <string-array name="map_data_b">
+        <item>ㅁ-ㅅ</item>
+        <item>머무른 시간의 호수</item>
+        <item>메드리닉 수도원</item>
+        <item>메마른 통로</item>
+        <item>바다향기 숲</item>
+        <item>바람결 구릉지</item>
+        <item>발란카르 산맥</item>
+        <item>배꽃나무 자생지</item>
+        <item>베르닐 삼림</item>
+        <item>보레아 영지</item>
+        <item>빌브린 숲</item>
+        <item>살란드 구릉지</item>
+        <item>서리감옥 고원</item>
+        <item>성큼바위 숲</item>
+        <item>소리의 숲</item>
+    </string-array>
+    <string-array name="map_data_c">
+        <item>ㅇ-ㅎ</item>
+        <item>안게모스 산 기슭</item>
+        <item>얼어붙은 바다</item>
+        <item>얼음나비 절벽</item>
+        <item>오즈혼 구릉지</item>
+        <item>자고라스 산</item>
+        <item>침묵하는 거인의 숲</item>
+        <item>칼날바람 언덕</item>
+        <item>크로나 항구</item>
+        <item>크로커니스 해변</item>
+        <item>토트리치</item>
+        <item>파르나 숲</item>
+        <item>페스나르 고원</item>
+        <item>해무리 언덕</item>
+        <item>황혼의 연무</item>
+        <item>흑장미 교회당</item>
+    </string-array>
+    <string-array name="map_song">
+        <item>노래 선택</item>
+        <item>용기의 노래</item>
+        <item>마음의 칸타빌레</item>
+        <item>유혹의 노래</item>
+        <item>사랑의 세레나데</item>
+        <item>별빛의 노래</item>
+        <item>천상의 하모니</item>
+        <item>고요의 엘리지</item>
+    </string-array>
+    <string-array name="map_hint">
+        <item> 지도힌트 </item>
+        <item>	가장 맑은 기운이 모인 호수	</item>
+        <item>	가리우는 떠돌이의 안개	</item>
+        <item>	강렬한 비트, 그리고 땀냄새	</item>
+        <item>	거대한 알의 미스터리	</item>
+        <item>	고대 종족의 유물이 있는 곳	</item>
+        <item>	고래들의 섬	</item>
+        <item>	고블린들의 새로운 터전	</item>
+        <item>	구름을 쥔 대지의 손바닥	</item>
+        <item>	그녀의 사유지	</item>
+        <item>	기억마저 아스라이 흐려지는 곳	</item>
+        <item>	나비가 태어나는 섬	</item>
+        <item>	낚시꾼들의 낙원	</item>
+        <item>	낚시대회가 열리는곳	</item>
+        <item>	날개짓하는 서리의 절벽	</item>
+        <item>	노란 꽃이 가득 피어있는 들판	</item>
+        <item>	노예사냥꾼의 전당	</item>
+        <item>	노을이 익어가는 과실의 낙원	</item>
+        <item>	느긋한 뙤약볕의 해변	</item>
+        <item>	느긋한 시간의 낚시꾼	</item>
+        <item>	늪을 엮는 덩굴의 그림자	</item>
+        <item>	달큰한 매화의 마을	</item>
+        <item>	대나무가 가득한 섬	</item>
+        <item>	드리워진 버섯의 그림자	</item>
+        <item>	등껍질의 섬	</item>
+        <item>	만년설 아래 거대한 요새	</item>
+        <item>	만인을 위한 제초	</item>
+        <item>	말라붙은 갈증의 모래바다	</item>
+        <item>	메울 수 없는 모래의 협곡	</item>
+        <item>	모래바람이 머무는 구릉지	</item>
+        <item>	무너진 문명과 잊혀진 자들	</item>
+        <item>	무수한 희망의 좌초지	</item>
+        <item>	무인도	</item>
+        <item>	물건이 흘러들어오는 섬	</item>
+        <item>	물컹물컹	</item>
+        <item>	바람에 휩쓸린 악마의 땅	</item>
+        <item>	버려진 희망의 마을	</item>
+        <item>	별과 노래의 언덕	</item>
+        <item>	별이 가루를 뿌리는 곳	</item>
+        <item>	볕드는 사냥꾼의 성지	</item>
+        <item>	사랑을 위한 꽃	</item>
+        <item>	사막에 자리한 옛 시가지	</item>
+        <item>	살 에는 눈송이의 대지	</item>
+        <item>	살아있는 생태계	</item>
+        <item>	새벽녘에 가장 시끄러운 곳	</item>
+        <item>	생태연구 보호구역	</item>
+        <item>	서리어린 세월의 나뭇가지	</item>
+        <item>	세상에서 가장 작은 숲길	</item>
+        <item>	세월로 벼린 날카로운 요새	</item>
+        <item>	소금범벅 짜디짠 도적단	</item>
+        <item>	소리가 머무는 공명의 숲	</item>
+        <item>	숨겨둔 비밀기지	</item>
+        <item>	식지않는 뜨거운 운석	</item>
+        <item>	신과 악마의 격전지	</item>
+        <item>	심장폭행의 섬	</item>
+        <item>	아로새겨진 광기의 상흔	</item>
+        <item>	안개가 빚어낸 바위 골짜기	</item>
+        <item>	알 수 없는 흑막의 소굴	</item>
+        <item>	어둠의 주술이 가득한 섬	</item>
+        <item>	얼음 조각사의 낙원	</item>
+        <item>	여행자와 상인의 길	</item>
+        <item>	연결된 선상의 자유로움	</item>
+        <item>	영원히 흐르는 모래의 폭포	</item>
+        <item>	영혼들이 갇혀있는 섬	</item>
+        <item>	영혼이 깃든 나무가 있는 곳	</item>
+        <item>	영혼이 깃든 바위의 숲	</item>
+        <item>	위험을 잉태한 숲의 그늘	</item>
+        <item>	자그마한 분쟁의 섬	</item>
+        <item>	자유소녀의 고립된 꿈	</item>
+        <item>	저항과 폭력의 숲	</item>
+        <item>	절벽 위 영웅을 기리는 사당	</item>
+        <item>	절벽에 흐르는 거대한 침묵	</item>
+        <item>	조용한 장인의 섬	</item>
+        <item>	진실을 비추는 계곡	</item>
+        <item>	차가운 숨결의 감옥	</item>
+        <item>	차갑다, 그리고 뜨겁다	</item>
+        <item>	찬란한 계단과 녹음의 길	</item>
+        <item>	촉촉하고 따뜻한 땅	</item>
+        <item>	칠흑이 피어난 음산의 전당	</item>
+        <item>	침침한 기억의 되돌림	</item>
+        <item>	크게 걷는 바위의 숲	</item>
+        <item>	태얄을 그리는 동그라미	</item>
+        <item>	평화로운 농부의 땅	</item>
+        <item>	푸르고 축축한 숲	</item>
+        <item>	풍류의 등나무 정원	</item>
+        <item>	플로레스의 바다 왕좌	</item>
+        <item>	하늘을 비추는 거울의 대지	</item>
+        <item>	한 치 앞이 보이지 않는 곳	</item>
+        <item>	항아리 낳는 항아리	</item>
+        <item>	해적마을에 숨겨진 비밀	</item>
+        <item>	햇살가득 동물의 낙원	</item>
+        <item>	호박신의 축복	</item>
+        <item>	혹한이 몰아치는 곳	</item>
+        <item>	휘몰아치는 모래의 봉우리	</item>
+        <item>	희망이 얼어붙은 항만	</item>
+    </string-array>
+    <string-array name="map_answer">
+        <item> null </item>
+        <item>	레이크바	</item>
+        <item>	안개의 섬	</item>
+        <item>	클럽 아비뉴	</item>
+        <item>	스피다 섬	</item>
+        <item>	고립된 영원의 섬	</item>
+        <item>	노토스 섬	</item>
+        <item>	희망의 섬	</item>
+        <item>	페스나르 고원	</item>
+        <item>	검은 이빨의 주둔지	</item>
+        <item>	몽환의 섬	</item>
+        <item>	환영나비 섬	</item>
+        <item>	블루홀	</item>
+        <item>	기회의 섬	</item>
+        <item>	얼음나비 절벽	</item>
+        <item>	안게모스 산 기슭	</item>
+        <item>	칼트헤르츠	</item>
+        <item>	배꽃나무 자생지	</item>
+        <item>	크로커니스 해변	</item>
+        <item>	세월의 섬	</item>
+        <item>	베르닐 삼림	</item>
+        <item>	델파이 현	</item>
+        <item>	판다푸푸 섬	</item>
+        <item>	거대버섯 섬	</item>
+        <item>	거북 섬	</item>
+        <item>	자고라스 산	</item>
+        <item>	포모나 섬	</item>
+        <item>	메마른 통로	</item>
+        <item>	갈라진 땅	</item>
+        <item>	바람결 구릉지	</item>
+        <item>	잊혀진 자들의 도시	</item>
+        <item>	갈망의 섬	</item>
+        <item>	작은 행운의 섬	</item>
+        <item>	황금물결 섬	</item>
+        <item>	슬라임 아일랜드	</item>
+        <item>	오즈혼 구릉지	</item>
+        <item>	도망자들의 마을	</item>
+        <item>	해무리 언덕	</item>
+        <item>	에스텔라	</item>
+        <item>	신월의 섬	</item>
+        <item>	리베하임	</item>
+        <item>	토트리치	</item>
+        <item>	칼날바람 언덕	</item>
+        <item>	메르시아 섬	</item>
+        <item>	알라케르	</item>
+        <item>	꿈꾸는 갈매기 섬	</item>
+        <item>	머무른 시간의 호수	</item>
+        <item>	달콤한 숲	</item>
+        <item>	발란카르 산맥	</item>
+        <item>	포르페 섬	</item>
+        <item>	소리의 숲	</item>
+        <item>	비밀기지 X-301	</item>
+        <item>	메테오라	</item>
+        <item>	격전의평야	</item>
+        <item>	나루니 섬	</item>
+        <item>	보레아 영지	</item>
+        <item>	황혼의 연무	</item>
+        <item>	카마인의 주둔지	</item>
+        <item>	니헬타로프의 상념	</item>
+        <item>	아르곤	</item>
+        <item>	국경지대	</item>
+        <item>	자유의 섬	</item>
+        <item>	리제 폭포	</item>
+        <item>	발푸르기스	</item>
+        <item>	고요한 안식의 섬	</item>
+        <item>	바다향기 숲	</item>
+        <item>	파르나 숲	</item>
+        <item>	무법자의 섬	</item>
+        <item>	하얀파도 섬	</item>
+        <item>	빌브린숲	</item>
+        <item>	메드리닉 수도원	</item>
+        <item>	침묵하는 거인의 숲	</item>
+        <item>	고요의 섬	</item>
+        <item>	거울 계곡	</item>
+        <item>	서리감옥 고원	</item>
+        <item>	얼음과 불의 섬	</item>
+        <item>	크로나 항구	</item>
+        <item>	로그힐	</item>
+        <item>	흑장미 교회당	</item>
+        <item>	회상의 섬	</item>
+        <item>	성큼바위 숲	</item>
+        <item>	해바라기 섬	</item>
+        <item>	디오리카 평원	</item>
+        <item>	라이아 단구	</item>
+        <item>	등나무 언덕	</item>
+        <item>	격류의 섬	</item>
+        <item>	살란드 구릉지	</item>
+        <item>	짙은 안개 능선	</item>
+        <item>	포르투나	</item>
+        <item>	해적마을 아틀라스	</item>
+        <item>	토토피아 섬	</item>
+        <item>	오르비스 섬	</item>
+        <item>	혹한의 안식처	</item>
+        <item>	네벨호른	</item>
+        <item>	얼어붙은 바다	</item>
+    </string-array>
+</resources>

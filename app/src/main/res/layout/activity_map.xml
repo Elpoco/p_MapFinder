@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackGround"
+    tools:context=".MapActivity">
+
+    <RelativeLayout
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/sinners"
+        android:background="@drawable/map"
+        android:scaleType="centerCrop">
+
+        <TextView
+            android:id="@+id/map_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="지도 이름"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="지역명"
+            android:textSize="60sp" />
+
+        <Spinner
+            android:id="@+id/sp_song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/back"></Spinner>
+        <Spinner
+            android:id="@+id/sp_hint"
+            android:layout_width="wrap_content"
+            android:background="@drawable/back"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="8dp"></Spinner>
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+    <LinearLayout
+        android:id="@+id/sinners"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:weightSum="3">
+
+        <Spinner
+            android:id="@+id/sp_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+        <Spinner
+            android:id="@+id/sp_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+        <Spinner
+            android:id="@+id/sp_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
