@@ -1,5 +1,6 @@
 package com.elpoco.p_mapfinder;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickShare(View view) {
-        startActivity(new Intent(this, ShareActivity.class));
+        loading();
+//        startActivity(new Intent(this, ShareActivity.class));
     }
 
     public void clickMyPage(View view) {
@@ -55,5 +57,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickSetting(View view) {
+        loading();
+//        startActivity(new Intent(this, SettingActivity.class));
+    }
+
+    void loading() {
+        new AlertDialog.Builder(this).setMessage("준비중 입니다.").show();
     }
 }

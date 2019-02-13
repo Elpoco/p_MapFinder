@@ -11,7 +11,7 @@
         android:id="@+id/pv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/seamap"/>
+        android:src="@drawable/background_seamap"/>
 
     <ImageView
         android:id="@+id/pin"

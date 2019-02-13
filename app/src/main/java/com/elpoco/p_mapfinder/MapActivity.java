@@ -140,5 +140,8 @@ public class MapActivity extends AppCompatActivity {
         }
     };
 
+    public void clickLogo(View view) {
+        finish();
+    }
 }
 
