@@ -41,11 +41,11 @@ public class MapActivity extends AppCompatActivity {
         sp_song = findViewById(R.id.sp_song);
         sp_hint=findViewById(R.id.sp_hint);
 
-        adapter_1 = ArrayAdapter.createFromResource(this, R.array.map_data_a, R.layout.spinner_item);
-        adapter_2 = ArrayAdapter.createFromResource(this, R.array.map_data_b, R.layout.spinner_item);
-        adapter_3 = ArrayAdapter.createFromResource(this, R.array.map_data_c, R.layout.spinner_item);
-        adapterSong = ArrayAdapter.createFromResource(this, R.array.map_song, R.layout.spinner_item);
-        adapterHint = ArrayAdapter.createFromResource(this,R.array.map_hint,R.layout.spinner_item);
+        adapter_1 = ArrayAdapter.createFromResource(this, R.array.map_data_a, R.layout.item_spinner);
+        adapter_2 = ArrayAdapter.createFromResource(this, R.array.map_data_b, R.layout.item_spinner);
+        adapter_3 = ArrayAdapter.createFromResource(this, R.array.map_data_c, R.layout.item_spinner);
+        adapterSong = ArrayAdapter.createFromResource(this, R.array.map_song, R.layout.item_spinner);
+        adapterHint = ArrayAdapter.createFromResource(this,R.array.map_hint,R.layout.item_spinner);
 
         sp_1.setAdapter(adapter_1);
         sp_2.setAdapter(adapter_2);
