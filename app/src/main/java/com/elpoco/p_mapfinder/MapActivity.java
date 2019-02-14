@@ -3,6 +3,7 @@ package com.elpoco.p_mapfinder;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 public class MapActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
     Spinner sp_1, sp_2, sp_3;
     Spinner sp_song, sp_hint;
     ArrayAdapter adapter_1, adapter_2, adapter_3;
@@ -25,6 +27,11 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tv = findViewById(R.id.tv);
 

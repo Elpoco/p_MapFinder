@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class MapSeaActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
     PhotoView pv;
     ImageView pin;
 
@@ -26,6 +28,12 @@ public class MapSeaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_sea);
+
+        toolbar=findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         pv = findViewById(R.id.pv);
         pin = findViewById(R.id.pin);
@@ -64,4 +72,7 @@ public class MapSeaActivity extends AppCompatActivity {
 
     }
 
+    public void clickLogo(View view) {
+        finish();
+    }
 }

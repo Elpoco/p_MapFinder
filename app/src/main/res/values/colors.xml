@@ -7,4 +7,6 @@
     <color name="mainBackGround">#191a1d</color>
     <color name="textColor">#a6a6b6</color>
     <color name="dropDownBackColor">#162022</color>
+
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
