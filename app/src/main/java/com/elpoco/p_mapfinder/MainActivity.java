@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickShare(View view) {
-        loading();
-//        startActivity(new Intent(this, ShareActivity.class));
+        startActivity(new Intent(this, ShareActivity.class));
     }
 
     public void clickMyPage(View view) {
@@ -57,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickSetting(View view) {
-        loading();
-//        startActivity(new Intent(this, SettingActivity.class));
+        startActivity(new Intent(this, SettingActivity.class));
     }
 
     void loading() {

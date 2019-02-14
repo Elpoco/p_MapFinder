@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dropDownBackColor"
+    android:background="@color/itemColor"
     android:textColor="@color/textColor"
     android:padding="8dp">
 
