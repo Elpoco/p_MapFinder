@@ -53,15 +53,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickShare(View view) {
-        startActivity(new Intent(this, ShareActivity.class));
+        loading();
+//        startActivity(new Intent(this, ShareActivity.class));
     }
 
     public void clickMyPage(View view) {
-        drawerLayout.openDrawer(GravityCompat.START);
+        loading();
+//        drawerLayout.openDrawer(GravityCompat.START);
     }
 
     public void clickSetting(View view) {
-        startActivity(new Intent(this, SettingActivity.class));
+        loading();
+//        startActivity(new Intent(this, SettingActivity.class));
     }
 
     @Override
