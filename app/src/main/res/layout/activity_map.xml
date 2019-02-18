@@ -67,7 +67,6 @@
             android:layout_marginLeft="8dp"></Spinner>
 
     </RelativeLayout>
-
     <LinearLayout
         android:id="@+id/sinners"
         android:layout_width="match_parent"
@@ -100,6 +99,13 @@
             android:spinnerMode="dropdown"></Spinner>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@drawable/inventory"
+        android:layout_below="@id/back"/>
+
 
 
 </RelativeLayout>

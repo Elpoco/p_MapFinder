@@ -3,6 +3,7 @@ package com.elpoco.p_mapfinder;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.net.URL;
 
@@ -20,14 +22,17 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     DrawerLayout drawerLayout;
 
+    boolean backBtn = false;
+    backBtnThread thread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout=findViewById(R.id.drawer);
-        toolbar=findViewById(R.id.toolbar);
-        navView=findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer);
+        toolbar = findViewById(R.id.toolbar);
+        navView = findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -35,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMap(View view) {
-        startActivity(new Intent(this,MapActivity.class));
+        startActivity(new Intent(this, MapActivity.class));
     }
 
     public void clickSeaMap(View view) {
-        startActivity(new Intent(this,MapSeaActivity.class));
+        startActivity(new Intent(this, MapSeaActivity.class));
     }
 
     public void clickShop(View view) {
-        String shopUrl="https://lostark.game.onstove.com/Shop/Mari";
+        String shopUrl = "https://lostark.game.onstove.com/Shop/Mari";
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(shopUrl)));
     }
 
@@ -58,6 +63,32 @@ public class MainActivity extends AppCompatActivity {
     public void clickSetting(View view) {
         startActivity(new Intent(this, SettingActivity.class));
     }
+
+    @Override
+    public void onBackPressed() {
+        if (backBtn) super.onBackPressed();
+        backBtn = true;
+        if (thread == null) {
+            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            thread = new backBtnThread();
+            thread.start();
+        }
+    }
+
+    class backBtnThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            try {
+                Thread.sleep(2000);
+                backBtn = false;
+                thread=null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     void loading() {
         new AlertDialog.Builder(this).setMessage("준비중 입니다.").show();
