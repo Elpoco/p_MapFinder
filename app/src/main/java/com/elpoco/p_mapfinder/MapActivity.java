@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -24,7 +23,6 @@ public class MapActivity extends AppCompatActivity {
 
     String[] mapNameSong = {"", "루테란", "토토이크", "유디아", "베른", "아르데타인\n아르테미스", "애니츠", "슈샤이어"};
     String[] mapName = {"아르테미스", "유디아", "루테란 서부", "루테란 동부", "토토이크", "애니츠", "아르데타인", "베른", "슈사이어", "로헨델", ""};
-    String[] select;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +42,11 @@ public class MapActivity extends AppCompatActivity {
         sp_song = findViewById(R.id.sp_song);
         sp_hint = findViewById(R.id.sp_hint);
 
-        adapter_1 = ArrayAdapter.createFromResource(this, R.array.map_1_data_a, R.layout.item_spinner);
-        adapter_2 = ArrayAdapter.createFromResource(this, R.array.map_2_data_b, R.layout.item_spinner);
-        adapter_3 = ArrayAdapter.createFromResource(this, R.array.map_3_data_c, R.layout.item_spinner);
-        adapterSong = ArrayAdapter.createFromResource(this, R.array.map_4_song, R.layout.item_spinner);
-        adapterHint = ArrayAdapter.createFromResource(this, R.array.map_5_hint, R.layout.item_spinner);
+        adapter_1 = ArrayAdapter.createFromResource(this, R.array.map_data_a, R.layout.item_spinner);
+        adapter_2 = ArrayAdapter.createFromResource(this, R.array.map_data_b, R.layout.item_spinner);
+        adapter_3 = ArrayAdapter.createFromResource(this, R.array.map_data_c, R.layout.item_spinner);
+        adapterSong = ArrayAdapter.createFromResource(this, R.array.map_song, R.layout.item_spinner);
+        adapterHint = ArrayAdapter.createFromResource(this, R.array.map_hint, R.layout.item_spinner);
 
         sp_1.setAdapter(adapter_1);
         sp_2.setAdapter(adapter_2);
@@ -80,7 +78,7 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Resources res = getResources();
-                String[] arr = res.getStringArray(R.array.map_6_answer);
+                String[] arr = res.getStringArray(R.array.map_answer);
                 tv.setText(arr[position]);
             }
 
@@ -111,27 +109,29 @@ public class MapActivity extends AppCompatActivity {
                 case R.id.sp_2:
                     arr = new int[][]{
                             {},
-                            {11},
-                            {2, 10},
-                            {7, 9},
-                            {4, 13},
-                            {14},
-                            {3, 5},
-                            {6, 8},
-                            {1, 12}
+                            {12},
+                            {2, 11},
+                            {8, 10},
+                            {4, 14},
+                            {15},
+                            {3, 6},
+                            {5, 9},
+                            {1, 13},
+                            {7}
                     };
                     break;
                 case R.id.sp_3:
                     arr = new int[][]{
                             {1},
-                            {4},
                             {5},
-                            {9, 13, 15},
-                            {6},
-                            {14},
+                            {8},
+                            {12, 17, 19},
                             {10},
-                            {8, 11, 12},
-                            {2, 3, 7}
+                            {18},
+                            {13},
+                            {11, 15, 16},
+                            {2, 3, 9},
+                            {5,6,13,4}
                     };
                     break;
             }

@@ -29,6 +29,7 @@
         android:src="@drawable/background_seamap"/>
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/pin"
         android:src="@drawable/pin_1"
         android:layout_width="wrap_content"
