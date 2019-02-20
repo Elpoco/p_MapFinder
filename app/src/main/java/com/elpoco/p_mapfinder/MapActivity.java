@@ -131,7 +131,7 @@ public class MapActivity extends AppCompatActivity {
                             {13},
                             {11, 15, 16},
                             {2, 3, 9},
-                            {5,6,13,4}
+                            {4,6,7,13}
                     };
                     break;
             }
