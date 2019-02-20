@@ -23,7 +23,7 @@
         <activity android:name=".MapActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".MapSeaActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".ShareActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MypageActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MyPageActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".SettingActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".BoardActivity" android:parentActivityName=".ShareActivity"/>
         <activity android:name=".WriteActivity" android:parentActivityName=".ShareActivity"></activity>

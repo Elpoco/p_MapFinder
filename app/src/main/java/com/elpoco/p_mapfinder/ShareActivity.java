@@ -6,8 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class ShareActivity extends AppCompatActivity {
@@ -31,11 +44,44 @@ public class ShareActivity extends AppCompatActivity {
         adapter = new ShareAdapter(items, this);
         recyclerView.setAdapter(adapter);
 
-        for (int i = 0; i < 10; i++) {
-            items.add(new ShareItem(i + ""));
-        }
+        loadData();
+    }
 
-        adapter.notifyDataSetChanged();
+    public void loadData() {
+        String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,serverUrl,null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                // 응답을 성공적으로 받았을 때...
+                // 서버로부터 echo 된 데이터... : 매개변수로 온 JsonArray
+                try {
+                    String title, text, filePath;
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        title = jsonObject.getString("title");
+                        text = jsonObject.getString("text");
+                        filePath = jsonObject.getString("filepath");
+
+                        // 파일경로의 경우 서버 IP 가 제외된 주소(uploads/*.*)로 전달되어옴.
+                        // 그래서 바로 사용할 수가 없음
+                        filePath = "http://elpoco1.dothome.co.kr/" + filePath;
+                        items.add(0, new ShareItem(title, text, filePath));
+                        adapter.notifyItemInserted(0);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 실패
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void clickAdd(View view) {
@@ -59,4 +105,5 @@ public class ShareActivity extends AppCompatActivity {
                 break;
         }
     }
+
 }

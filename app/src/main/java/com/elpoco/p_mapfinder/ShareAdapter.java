@@ -7,7 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -24,7 +27,7 @@ public class ShareAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView=LayoutInflater.from(context).inflate(R.layout.item_cardview,viewGroup,false);
+        View itemView=LayoutInflater.from(context).inflate(R.layout.item_share,viewGroup,false);
 
         VH holder=new VH(itemView);
 
@@ -37,7 +40,8 @@ public class ShareAdapter extends RecyclerView.Adapter {
 
         ShareItem item=items.get(position);
 
-        view.tvTitle.setText(item.title);
+        view.tvTitle.setText(item.getTitle());
+        Glide.with(context).load(item.getFilePath()).into(view.ivMap);
     }
 
     @Override
@@ -47,10 +51,12 @@ public class ShareAdapter extends RecyclerView.Adapter {
 
     class VH extends RecyclerView.ViewHolder{
         TextView tvTitle;
+        ImageView ivMap;
 
         public VH(@NonNull View itemView) {
             super(itemView);
             tvTitle=itemView.findViewById(R.id.tv_title);
+            ivMap=itemView.findViewById(R.id.iv_map);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

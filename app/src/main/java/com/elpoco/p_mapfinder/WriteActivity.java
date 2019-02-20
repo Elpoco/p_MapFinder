@@ -102,13 +102,13 @@ public class WriteActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 // 서버로부터 응답을 받았을때 자동 실행..
                 // 매개변수로 받은 String 이 echo 된 결과값...
-                new AlertDialog.Builder(WriteActivity.this).setMessage(response).show();
+//                new AlertDialog.Builder(WriteActivity.this).setMessage(response).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // 서버요청 중 에러가 발생하면 자동 실행..
-                Toast.makeText(WriteActivity.this, error.getMessage(), Toast.LENGTH_SHORT);
+//                Toast.makeText(WriteActivity.this, error.getMessage(), Toast.LENGTH_SHORT);
             }
         });
 
@@ -119,6 +119,7 @@ public class WriteActivity extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
 
         requestQueue.add(multiPartRequest);
+        finish();
     }
 
     public void clickCancel(View view) {
