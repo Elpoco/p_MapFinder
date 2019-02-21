@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackGround"
+    android:focusableInTouchMode="true"
     tools:context=".BoardActivity">
 
     <android.support.v7.widget.Toolbar
@@ -28,21 +29,24 @@
         android:layout_below="@id/toolbar"
         android:layout_marginTop="8dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/layout_board"
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_board_user"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/icon_mari_n" />
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -56,10 +60,10 @@
                 <TextView
                     android:id="@+id/tv_text"
                     android:layout_width="match_parent"
-                    android:layout_toRightOf="@id/iv_board_user"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_title"
                     android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@id/iv_board_user"
                     android:text="text"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp" />
@@ -71,44 +75,44 @@
                 android:layout_height="250dp"
                 android:layout_below="@id/layout_board"
                 android:layout_marginTop="8dp"
-                android:background="@color/listColor"
-                android:focusable="true"
-                android:focusableInTouchMode="true"/>
+                android:background="@color/listColor" />
 
             <LinearLayout
                 android:id="@+id/layout_comment"
-                android:layout_below="@id/iv_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/iv_map"
                 android:layout_marginTop="8dp"
                 android:weightSum="4">
 
                 <EditText
                     android:id="@+id/et_comment"
                     android:layout_width="0dp"
-                    android:layout_weight="3"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/iv_map"
+                    android:layout_weight="3"
                     android:background="@drawable/back_round_rec"
                     android:gravity="top"
-                    android:lines="1"/>
+                    android:lines="1" />
+
                 <Button
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="등록"
                     android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/btn_bg"
-                    android:onClick="clickSuccess"/>
+                    android:onClick="clickSuccess"
+                    android:text="등록" />
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layout_comment"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical"
-                android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"></android.support.v7.widget.RecyclerView>
         </RelativeLayout>
 
     </ScrollView>

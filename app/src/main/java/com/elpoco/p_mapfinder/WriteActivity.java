@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,6 +34,8 @@ import com.bumptech.glide.Glide;
 public class WriteActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+
+    ProgressBar progressBar;
 
     EditText etTitle, etText;
     ImageView ivMap;
@@ -46,6 +51,8 @@ public class WriteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        progressBar = findViewById(R.id.progress_write);
 
         etTitle = findViewById(R.id.et_title);
         etText = findViewById(R.id.et_text);
@@ -86,36 +93,67 @@ public class WriteActivity extends AppCompatActivity {
         String title = etTitle.getText().toString();
         String text = etText.getText().toString();
 
-        if (title.length() == 0) new AlertDialog.Builder(this).setMessage("제목을 입력하세요.").show();
-        if (text.length() == 0) new AlertDialog.Builder(this).setMessage("내용을 입력하세요.").show();
-        if(imgPath==null) new AlertDialog.Builder(this).setMessage("사진을 선택하세요.").show();
-
-        if (title.length() != 0 && text.length() != 0 && imgPath != null) {
-            SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    // 서버로부터 응답을 받았을때 자동 실행..
-                    // 매개변수로 받은 String 이 echo 된 결과값...
-//                new AlertDialog.Builder(WriteActivity.this).setMessage(response).show();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // 서버요청 중 에러가 발생하면 자동 실행..
-//                Toast.makeText(WriteActivity.this, error.getMessage(), Toast.LENGTH_SHORT);
-                }
-            });
-
-            multiPartRequest.addStringParam("title", title);
-            multiPartRequest.addStringParam("text", text);
-            multiPartRequest.addFile("upload", imgPath);
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-            requestQueue.add(multiPartRequest);
-            setResult(RESULT_OK,getIntent().putExtra("write",G.WRITE_OK));
-            finish();
+        if (title.length() == 0) {
+            makeDialog("제목을 입력하세요.");
+            return;
         }
+        if (text.length() == 0) {
+            makeDialog("내용을 입력하세요.");
+            return;
+        }
+        if (imgPath == null) {
+            makeDialog("사진을 선택하세요.");
+            return;
+        }
+
+        SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                // 서버로부터 응답을 받았을때 자동 실행..
+                // 매개변수로 받은 String 이 echo 된 결과값...
+//                new AlertDialog.Builder(WriteActivity.this).setMessage(response).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 서버요청 중 에러가 발생하면 자동 실행..
+//                Toast.makeText(WriteActivity.this, error.getMessage(), Toast.LENGTH_SHORT);
+            }
+        });
+
+        multiPartRequest.addStringParam("title", title);
+        multiPartRequest.addStringParam("text", text);
+        multiPartRequest.addFile("upload", imgPath);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(multiPartRequest);
+        setResult(RESULT_OK, getIntent().putExtra("write", G.WRITE_OK));
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finish();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(WriteActivity.this, "게시물이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }.start();
+    }
+
+    public void makeDialog(String msg) {
+        new AlertDialog.Builder(this).setMessage(msg).show();
     }
 
     public void clickCancel(View view) {

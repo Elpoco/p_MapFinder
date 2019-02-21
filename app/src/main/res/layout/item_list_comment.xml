@@ -15,7 +15,7 @@
             android:id="@+id/iv_comment_user"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/icon_mari_n"/>
 
         <TextView
             android:id="@+id/tv_comment_id"

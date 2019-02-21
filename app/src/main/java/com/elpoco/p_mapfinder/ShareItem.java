@@ -8,17 +8,20 @@ public class ShareItem implements Parcelable {
     private String title;
     private String text;
     private String filePath;
+    private String boardNum;
 
-    public ShareItem(String title, String text, String filePath) {
+    public ShareItem(String title, String text, String filePath, String boardNum) {
         this.title = title;
         this.text = text;
         this.filePath = filePath;
+        this.boardNum = boardNum;
     }
 
     protected ShareItem(Parcel in) {
         title = in.readString();
         text = in.readString();
         filePath = in.readString();
+        boardNum = in.readString();
     }
 
     public static final Creator<ShareItem> CREATOR = new Creator<ShareItem>() {
@@ -45,6 +48,10 @@ public class ShareItem implements Parcelable {
         return filePath;
     }
 
+    public String getBoardNum() {
+        return boardNum;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -55,5 +62,6 @@ public class ShareItem implements Parcelable {
         dest.writeString(title);
         dest.writeString(text);
         dest.writeString(filePath);
+        dest.writeString(boardNum);
     }
 }

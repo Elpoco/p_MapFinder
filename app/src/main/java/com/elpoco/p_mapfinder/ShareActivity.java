@@ -1,12 +1,15 @@
 package com.elpoco.p_mapfinder;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,10 +56,11 @@ public class ShareActivity extends AppCompatActivity {
                 // 응답을 성공적으로 받았을 때...
                 // 서버로부터 echo 된 데이터... : 매개변수로 온 JsonArray
                 try {
-                    String title, text, filePath;
+                    String title, text, filePath, boardNum;
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
+                        boardNum = jsonObject.getString("num");
                         title = jsonObject.getString("title");
                         text = jsonObject.getString("text");
                         filePath = jsonObject.getString("filepath");
@@ -64,9 +68,10 @@ public class ShareActivity extends AppCompatActivity {
                         // 파일경로의 경우 서버 IP 가 제외된 주소(uploads/*.*)로 전달되어옴.
                         // 그래서 바로 사용할 수가 없음
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
-                        items.add(0, new ShareItem(title, text, filePath));
-                        adapter.notifyItemInserted(0);
+                        items.add(0, new ShareItem(title, text, filePath, boardNum));
                     }
+                    adapter.notifyItemInserted(0);
+                    recyclerView.scrollToPosition(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -97,10 +102,20 @@ public class ShareActivity extends AppCompatActivity {
             case 10:
                 if (resultCode == RESULT_OK) {
                     if (data.getIntExtra("finish", G.DEFAULT) == G.FINISH) finish();
-                    if (data.getIntExtra("write", G.DEFAULT) == G.WRITE_OK) adapter.notifyDataSetChanged();
+                    if (data.getIntExtra("write", G.DEFAULT) == G.WRITE_OK) {
+                        try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
+                        handler.sendEmptyMessageAtTime(0, 1000); }
                 }
                 break;
         }
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            loadData();
+        }
+    };
 
 }

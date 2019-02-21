@@ -23,7 +23,6 @@
             android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
 
-
     <EditText
         android:id="@+id/et_title"
         android:layout_width="match_parent"
@@ -48,20 +47,22 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/et_text"
-        android:layout_marginTop="8dp" >
+        android:layout_marginTop="8dp">
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@android:drawable/ic_menu_gallery"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:src="@android:drawable/ic_menu_gallery" />
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/iv_map"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/et_text"
-        android:onClick="clickSelectImage"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:onClick="clickSelectImage" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,5 +89,12 @@
             android:onClick="clickSuccess"
             android:text="완료" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>
