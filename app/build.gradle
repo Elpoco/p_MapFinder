@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-beta02'
     implementation 'dev.dworks.libs:volleyplus:+'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }

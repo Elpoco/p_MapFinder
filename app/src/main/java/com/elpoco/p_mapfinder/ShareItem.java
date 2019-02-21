@@ -1,6 +1,9 @@
 package com.elpoco.p_mapfinder;
 
-public class ShareItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ShareItem implements Parcelable {
 
     private String title;
     private String text;
@@ -12,27 +15,45 @@ public class ShareItem {
         this.filePath = filePath;
     }
 
-    public String getTitle() {
-        return title;
+    protected ShareItem(Parcel in) {
+        title = in.readString();
+        text = in.readString();
+        filePath = in.readString();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public static final Creator<ShareItem> CREATOR = new Creator<ShareItem>() {
+        @Override
+        public ShareItem createFromParcel(Parcel in) {
+            return new ShareItem(in);
+        }
+
+        @Override
+        public ShareItem[] newArray(int size) {
+            return new ShareItem[size];
+        }
+    };
+
+    public String getTitle() {
+        return title;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getFilePath() {
         return filePath;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(text);
+        dest.writeString(filePath);
     }
 }

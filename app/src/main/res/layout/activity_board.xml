@@ -4,21 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BoardActivity"
-    android:background="@color/mainBackGround">
+    android:background="@color/mainBackGround"
+    tools:context=".BoardActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.Toolbar">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/logo"
             android:layout_gravity="center"
             android:clickable="true"
-            android:onClick="clickLogo"/>
+            android:onClick="clickLogo"
+            android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/layout_board"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_board_user"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginRight="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_board_user"
+                    android:text="title"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_text"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/iv_board_user"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_title"
+                    android:layout_marginTop="8dp"
+                    android:text="text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_map"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/layout_board"
+                android:layout_marginTop="8dp"
+                android:background="@color/listColor"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+            <LinearLayout
+                android:id="@+id/layout_comment"
+                android:layout_below="@id/iv_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:weightSum="4">
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_map"
+                    android:background="@drawable/back_round_rec"
+                    android:gravity="top"
+                    android:lines="1"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="등록"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/btn_bg"
+                    android:onClick="clickSuccess"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_comment"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

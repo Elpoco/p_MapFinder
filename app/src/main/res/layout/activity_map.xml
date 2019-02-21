@@ -72,7 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:layout_marginTop="8dp">
 
         <Spinner
             android:id="@+id/sp_1"
