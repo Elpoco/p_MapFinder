@@ -57,6 +57,7 @@ public class ShareActivity extends AppCompatActivity {
                 // 서버로부터 echo 된 데이터... : 매개변수로 온 JsonArray
                 try {
                     String title, text, filePath, boardNum;
+                    if(!items.isEmpty()) items.clear();
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -70,7 +71,7 @@ public class ShareActivity extends AppCompatActivity {
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
                         items.add(0, new ShareItem(title, text, filePath, boardNum));
                     }
-                    adapter.notifyItemInserted(0);
+                    adapter.notifyDataSetChanged();
                     recyclerView.scrollToPosition(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -103,8 +104,13 @@ public class ShareActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (data.getIntExtra("finish", G.DEFAULT) == G.FINISH) finish();
                     if (data.getIntExtra("write", G.DEFAULT) == G.WRITE_OK) {
-                        try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
-                        handler.sendEmptyMessageAtTime(0, 1000); }
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        handler.sendEmptyMessageAtTime(0, 1000);
+                    }
                 }
                 break;
         }

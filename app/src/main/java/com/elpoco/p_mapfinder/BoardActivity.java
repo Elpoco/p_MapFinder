@@ -77,8 +77,10 @@ public class BoardActivity extends AppCompatActivity {
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         thisBoardNum = Integer.parseInt(item.getBoardNum());
+
         loadComment();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this){
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -119,7 +121,7 @@ public class BoardActivity extends AppCompatActivity {
         etComment.setText("");
 
         imm.hideSoftInputFromWindow(etComment.getWindowToken(), 0);
-        handler.sendEmptyMessageAtTime(0, 500);
+        handler.sendEmptyMessageAtTime(0, 2000);
     }
 
     public void loadComment() {
@@ -129,6 +131,7 @@ public class BoardActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 try {
                     String boardNum, comment;
+                    if (!comments.isEmpty()) comments.clear();
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
                         boardNum = jsonObject.getString("boardNum");
@@ -136,7 +139,7 @@ public class BoardActivity extends AppCompatActivity {
                         comment = jsonObject.getString("comment");
                         comments.add(0, new CommentItem("익명", comment, "aa"));
                     }
-                    adapter.notifyItemInserted(0);
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
