@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/mainBackGround">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/listColor"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_comment_user"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/icon_mari_n"
+            android:layout_marginRight="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_comment_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:layout_toRightOf="@id/iv_comment_user"/>
+        <TextView
+            android:id="@+id/tv_comment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="comment"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:layout_toRightOf="@id/iv_comment_user"
+            android:layout_below="@id/tv_comment_id"/>
+    </RelativeLayout>
+</RelativeLayout>

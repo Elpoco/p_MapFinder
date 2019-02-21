@@ -3,7 +3,7 @@ package com.elpoco.p_mapfinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MypageActivity extends AppCompatActivity {
+public class MyPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

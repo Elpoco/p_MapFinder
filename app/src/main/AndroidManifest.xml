@@ -3,10 +3,12 @@
     package="com.elpoco.p_mapfinder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon_1"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -21,7 +23,7 @@
         <activity android:name=".MapActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".MapSeaActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".ShareActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MypageActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MyPageActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".SettingActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".BoardActivity" android:parentActivityName=".ShareActivity"/>
         <activity android:name=".WriteActivity" android:parentActivityName=".ShareActivity"></activity>
