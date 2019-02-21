@@ -88,6 +88,10 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        for (int i = 0; i < 10; i++) {
+            inventory=findViewById(R.id.tv_inventory00+i);
+            inventory.setText(G.INVENTORY[i]);
+        }
     }
 
     AdapterView.OnItemSelectedListener selectedListener = new AdapterView.OnItemSelectedListener() {
@@ -157,6 +161,8 @@ public class MapActivity extends AppCompatActivity {
     public void clickInventory(View view) {
         inventory=findViewById(view.getId());
         inventory.setText(tv.getText());
+        int index=Integer.parseInt(inventory.getTag().toString());
+        G.INVENTORY[index]=inventory.getText().toString();
     }
 }
 

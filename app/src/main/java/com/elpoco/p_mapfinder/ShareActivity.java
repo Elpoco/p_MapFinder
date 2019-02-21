@@ -49,7 +49,7 @@ public class ShareActivity extends AppCompatActivity {
 
     public void loadData() {
         String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,serverUrl,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 // 응답을 성공적으로 받았을 때...
@@ -98,9 +98,8 @@ public class ShareActivity extends AppCompatActivity {
         switch (requestCode) {
             case 10:
                 if (resultCode == RESULT_OK) {
-                    if (data.getIntExtra("finish", 1) == 0) {
-                        finish();
-                    }
+                    if (data.getIntExtra("finish", G.DEFAULT) == G.FINISH) finish();
+                    if (data.getIntExtra("write", G.DEFAULT) == G.WRITE_OK) adapter.notifyDataSetChanged();
                 }
                 break;
         }

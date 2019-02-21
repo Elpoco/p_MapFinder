@@ -27,7 +27,7 @@ public class ShareAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView=LayoutInflater.from(context).inflate(R.layout.item_share,viewGroup,false);
+        View itemView=LayoutInflater.from(context).inflate(R.layout.item_list,viewGroup,false);
 
         VH holder=new VH(itemView);
 

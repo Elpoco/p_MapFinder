@@ -113,6 +113,7 @@
             android:weightSum="5">
             <TextView
                 android:id="@+id/tv_inventory00"
+                android:tag="0"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -124,6 +125,7 @@
             <TextView
                 android:id="@+id/tv_inventory01"
                 android:layout_width="0dp"
+                android:tag="1"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:clickable="true"
@@ -134,6 +136,7 @@
             <TextView
                 android:id="@+id/tv_inventory02"
                 android:layout_width="0dp"
+                android:tag="2"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:clickable="true"
@@ -143,6 +146,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory03"
+                android:tag="3"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -153,6 +157,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory04"
+                android:tag="4"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -169,6 +174,7 @@
             android:weightSum="5">
             <TextView
                 android:id="@+id/tv_inventory05"
+                android:tag="5"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -179,6 +185,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory06"
+                android:tag="6"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -189,6 +196,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory07"
+                android:tag="7"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -199,6 +207,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory08"
+                android:tag="8"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -209,6 +218,7 @@
                 android:onClick="clickInventory"/>
             <TextView
                 android:id="@+id/tv_inventory09"
+                android:tag="9"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
