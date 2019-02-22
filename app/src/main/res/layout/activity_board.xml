@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackGround"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".BoardActivity">
 
     <android.support.v7.widget.Toolbar
@@ -23,10 +24,14 @@
             android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
     <ScrollView
+        android:id="@+id/scroll_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
         android:layout_marginTop="8dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -75,46 +80,53 @@
                 android:layout_height="250dp"
                 android:layout_below="@id/layout_board"
                 android:layout_marginTop="8dp"
-                android:background="@color/listColor" />
-
-            <LinearLayout
-                android:id="@+id/layout_comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iv_map"
-                android:layout_marginTop="8dp"
-                android:weightSum="4">
-
-                <EditText
-                    android:id="@+id/et_comment"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/iv_map"
-                    android:layout_weight="3"
-                    android:background="@drawable/back_round_rec"
-                    android:gravity="top"
-                    android:lines="1" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_bg"
-                    android:onClick="clickSuccess"
-                    android:text="등록" />
-            </LinearLayout>
+                android:background="@color/listColor"
+                android:onClick="clickBoardImage"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/layout_comment"
-                android:layout_marginTop="8dp"
+                android:layout_below="@id/iv_map"
+                android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"></android.support.v7.widget.RecyclerView>
         </RelativeLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout_comment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:weightSum="4">
+
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/iv_map"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:background="@drawable/back_round_rec"
+            android:gravity="top" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:onClick="clickSuccess"
+            android:text="등록" />
+    </LinearLayout>
+
+</LinearLayout>
