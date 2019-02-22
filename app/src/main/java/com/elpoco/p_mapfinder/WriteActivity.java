@@ -58,11 +58,6 @@ public class WriteActivity extends AppCompatActivity {
         etText = findViewById(R.id.et_text);
         ivMap = findViewById(R.id.iv_map);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
-            }
-        }
     }
 
     @Override
@@ -71,7 +66,7 @@ public class WriteActivity extends AppCompatActivity {
         switch (requestCode) {
             case G.PERMISSION:
                 if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(this, "이미지 업로드 불가", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(this).setMessage("이미지 업로드 불가").show();
                 }
                 break;
         }
@@ -105,6 +100,10 @@ public class WriteActivity extends AppCompatActivity {
             makeDialog("사진을 선택하세요.");
             return;
         }
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) return;
+//        }
 
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override
@@ -174,6 +173,11 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     public void clickSelectImage(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
+            }
+        }
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, G.SELECT_IMAGE);

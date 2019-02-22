@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +24,7 @@ import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 
 import org.json.JSONArray;
@@ -34,6 +37,7 @@ public class BoardActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    ScrollView scrollView;
     TextView tvTitle, tvText;
     ImageView ivMap;
     RecyclerView recyclerView;
@@ -57,6 +61,7 @@ public class BoardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        scrollView=findViewById(R.id.scroll_board);
         tvTitle = findViewById(R.id.tv_title);
         tvText = findViewById(R.id.tv_text);
         ivMap = findViewById(R.id.iv_map);
@@ -77,8 +82,10 @@ public class BoardActivity extends AppCompatActivity {
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         thisBoardNum = Integer.parseInt(item.getBoardNum());
+
         loadComment();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this){
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -92,13 +99,17 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     public void clickSuccess(View view) {
+
         String serverUrl = "http://elpoco1.dothome.co.kr/insertDBcomment.php";
         String boardNum = item.getBoardNum();
         String comment = etComment.getText().toString();
+
         if (comment.length() <= 1) {
             new AlertDialog.Builder(this).setMessage("2글자이상 입력하세요.").show();
             return;
         }
+        imm.hideSoftInputFromWindow(etComment.getWindowToken(), 0);
+
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -118,8 +129,18 @@ public class BoardActivity extends AppCompatActivity {
         requestQueue.add(multiPartRequest);
         etComment.setText("");
 
-        imm.hideSoftInputFromWindow(etComment.getWindowToken(), 0);
-        handler.sendEmptyMessageAtTime(0, 500);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessageAtTime(0, 1000);
+            }
+        }.start();
     }
 
     public void loadComment() {
@@ -129,6 +150,7 @@ public class BoardActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 try {
                     String boardNum, comment;
+                    if (!comments.isEmpty()) comments.clear();
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
                         boardNum = jsonObject.getString("boardNum");
@@ -136,7 +158,7 @@ public class BoardActivity extends AppCompatActivity {
                         comment = jsonObject.getString("comment");
                         comments.add(0, new CommentItem("익명", comment, "aa"));
                     }
-                    adapter.notifyItemInserted(0);
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -154,6 +176,14 @@ public class BoardActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             loadComment();
+            Toast.makeText(BoardActivity.this, "댓글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void clickBoardImage(View view) {
+        View dialogView=getLayoutInflater().inflate(R.layout.dialog_board_imageclick,null);
+        PhotoView pv=dialogView.findViewById(R.id.dialog_pv);
+        Glide.with(this).load(item.getFilePath()).into(pv);
+        new AlertDialog.Builder(this).setView(dialogView).show();
+    }
 }

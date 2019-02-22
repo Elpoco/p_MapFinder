@@ -1,14 +1,17 @@
 package com.elpoco.p_mapfinder;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,6 +34,8 @@ public class ShareActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ShareAdapter adapter;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +50,26 @@ public class ShareActivity extends AppCompatActivity {
         adapter = new ShareAdapter(items, this);
         recyclerView.setAdapter(adapter);
 
+        progressBar=findViewById(R.id.progress_share);
+
         loadData();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(!recyclerView.canScrollVertically(1)){
+                    loadData+=8;
+                    progressBar.setVisibility(View.VISIBLE);
+                    loadData();
+                }
+            }
+        });
     }
 
-    public void loadData() {
+    int loadData=8;
         String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
+    public void loadData() {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -57,7 +77,10 @@ public class ShareActivity extends AppCompatActivity {
                 // 서버로부터 echo 된 데이터... : 매개변수로 온 JsonArray
                 try {
                     String title, text, filePath, boardNum;
-                    for (int i = 0; i < response.length(); i++) {
+                    if(!items.isEmpty()) items.clear();
+                    if(response.length()<8) loadData=response.length();
+                    if(response.length()<loadData) loadData=response.length();
+                    for (int i=0; i < loadData; i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         boardNum = jsonObject.getString("num");
@@ -68,10 +91,10 @@ public class ShareActivity extends AppCompatActivity {
                         // 파일경로의 경우 서버 IP 가 제외된 주소(uploads/*.*)로 전달되어옴.
                         // 그래서 바로 사용할 수가 없음
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
-                        items.add(0, new ShareItem(title, text, filePath, boardNum));
+                        items.add(new ShareItem(title, text, filePath, boardNum));
                     }
-                    adapter.notifyItemInserted(0);
-                    recyclerView.scrollToPosition(0);
+                    adapter.notifyDataSetChanged();
+                    progressBar.setVisibility(View.INVISIBLE);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -103,8 +126,13 @@ public class ShareActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (data.getIntExtra("finish", G.DEFAULT) == G.FINISH) finish();
                     if (data.getIntExtra("write", G.DEFAULT) == G.WRITE_OK) {
-                        try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
-                        handler.sendEmptyMessageAtTime(0, 1000); }
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        handler.sendEmptyMessageAtTime(0, 2000);
+                    }
                 }
                 break;
         }
@@ -115,6 +143,7 @@ public class ShareActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             loadData();
+            recyclerView.scrollToPosition(0);
         }
     };
 
