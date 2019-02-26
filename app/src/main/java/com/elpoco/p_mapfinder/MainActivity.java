@@ -2,7 +2,9 @@ package com.elpoco.p_mapfinder;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
     }
 
     public void clickMap(View view) {
@@ -63,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickSetting(View view) {
-        loading();
-//        startActivity(new Intent(this, SettingActivity.class));
+//        loading();
+        startActivity(new Intent(this, SettingActivity.class));
     }
 
     @Override
     public void onBackPressed() {
-        if (backBtn) super.onBackPressed();
+        if (backBtn) {saveData(); super.onBackPressed();}
         backBtn = true;
         if (thread == null) {
             Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
@@ -95,5 +98,16 @@ public class MainActivity extends AppCompatActivity {
 
     void loading() {
         new AlertDialog.Builder(this).setMessage("준비중 입니다.").show();
+    }
+
+    void saveData() {
+        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
+
+        SharedPreferences.Editor editor=pref.edit();
+
+        editor.putBoolean("Sound",G.isSound);
+        editor.putBoolean("Vibrate",G.isVibrate);
+
+        editor.commit();
     }
 }

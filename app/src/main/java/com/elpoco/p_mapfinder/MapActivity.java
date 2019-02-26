@@ -90,7 +90,7 @@ public class MapActivity extends AppCompatActivity {
 
         for (int i = 0; i < 10; i++) {
             inventory=findViewById(R.id.tv_inventory00+i);
-            inventory.setText(G.INVENTORY[i]);
+            inventory.setText(G.inventory[i]);
         }
     }
 
@@ -162,7 +162,7 @@ public class MapActivity extends AppCompatActivity {
         inventory=findViewById(view.getId());
         inventory.setText(tv.getText());
         int index=Integer.parseInt(inventory.getTag().toString());
-        G.INVENTORY[index]=inventory.getText().toString();
+        G.inventory[index]=inventory.getText().toString();
     }
 }
 

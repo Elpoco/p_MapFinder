@@ -73,8 +73,6 @@ public class ShareActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                // 응답을 성공적으로 받았을 때...
-                // 서버로부터 echo 된 데이터... : 매개변수로 온 JsonArray
                 try {
                     String title, text, filePath, boardNum;
                     if(!items.isEmpty()) items.clear();
@@ -88,8 +86,6 @@ public class ShareActivity extends AppCompatActivity {
                         text = jsonObject.getString("text");
                         filePath = jsonObject.getString("filepath");
 
-                        // 파일경로의 경우 서버 IP 가 제외된 주소(uploads/*.*)로 전달되어옴.
-                        // 그래서 바로 사용할 수가 없음
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
                         items.add(new ShareItem(title, text, filePath, boardNum));
                     }
