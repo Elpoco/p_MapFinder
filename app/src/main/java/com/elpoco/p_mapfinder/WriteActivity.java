@@ -17,6 +17,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -57,7 +58,7 @@ public class WriteActivity extends AppCompatActivity {
         etTitle = findViewById(R.id.et_title);
         etText = findViewById(R.id.et_text);
         ivMap = findViewById(R.id.iv_map);
-
+        permission();
     }
 
     @Override
@@ -83,6 +84,13 @@ public class WriteActivity extends AppCompatActivity {
         exit();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        exit();
+//        return super.onOptionsItemSelected(item);
+        return true;
+    }
+
     public void clickSuccess(View view) {
         String serverUrl = "http://elpoco1.dothome.co.kr/insertDB.php";
         String title = etTitle.getText().toString();
@@ -96,14 +104,10 @@ public class WriteActivity extends AppCompatActivity {
             makeDialog("내용을 입력하세요.");
             return;
         }
-        if (imgPath == null) {
+        if (imgPath.length()==0) {
             makeDialog("사진을 선택하세요.");
             return;
         }
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) return;
-//        }
 
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override
@@ -173,11 +177,7 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     public void clickSelectImage(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
-            }
-        }
+        permission();
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, G.SELECT_IMAGE);
@@ -186,6 +186,9 @@ public class WriteActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) return;
+        }
         switch (requestCode) {
             case G.SELECT_IMAGE:
                 if (resultCode == RESULT_OK) {
@@ -196,6 +199,14 @@ public class WriteActivity extends AppCompatActivity {
                     }
                 }
                 break;
+        }
+    }
+
+    void permission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
+            }
         }
     }
 
