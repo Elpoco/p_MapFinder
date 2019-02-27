@@ -36,4 +36,7 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-beta02'
     implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

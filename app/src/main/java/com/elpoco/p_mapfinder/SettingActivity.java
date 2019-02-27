@@ -1,5 +1,6 @@
 package com.elpoco.p_mapfinder;
 
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Vibrator;
@@ -40,6 +41,9 @@ public class SettingActivity extends AppCompatActivity {
         alarm=soundPool.load(this,R.raw.mococo_seed,1);
 
         vibrator= (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+        tbSound.setChecked(G.isSound);
+        tbVibrate.setChecked(G.isVibrate);
     }
 
     CompoundButton.OnCheckedChangeListener checkedChangeListener=new CompoundButton.OnCheckedChangeListener() {
@@ -69,5 +73,23 @@ public class SettingActivity extends AppCompatActivity {
                 if(G.isVibrate) vibrator.vibrate(500);
                 break;
         }
+    }
+
+
+    @Override
+    protected void onStop() {
+        saveData();
+        super.onStop();
+    }
+
+    void saveData() {
+        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
+
+        SharedPreferences.Editor editor=pref.edit();
+
+        editor.putBoolean("Sound",G.isSound);
+        editor.putBoolean("Vibrate",G.isVibrate);
+
+        editor.commit();
     }
 }
