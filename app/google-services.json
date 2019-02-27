@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "692885938732",
+    "firebase_url": "https://loa-map.firebaseio.com",
+    "project_id": "loa-map",
+    "storage_bucket": "loa-map.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692885938732:android:101023a1222776a6",
+        "android_client_info": {
+          "package_name": "com.elpoco.p_mapfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692885938732-qkcqss11mrvlfvsukouqgnspuigppvpa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_fpkn4jre0IEtV-8VfYNetXcGp-LclgM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
