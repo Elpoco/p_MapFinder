@@ -75,12 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(!G.login) login();
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
-            }
-        }
-
         Glide.with(this).load(G.profileUrl).into(hIvProfile);
         hTvNickname.setText(G.nickName);
 
@@ -113,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMyPage(View view) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
+            }
+        }
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
