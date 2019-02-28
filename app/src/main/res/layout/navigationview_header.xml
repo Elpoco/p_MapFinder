@@ -5,6 +5,13 @@
     android:padding="16dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:src="@drawable/icon_mari_n" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/header_iv"
         android:layout_width="80dp"
         android:layout_height="80dp"

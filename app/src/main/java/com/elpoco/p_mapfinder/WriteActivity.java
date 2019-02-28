@@ -127,6 +127,9 @@ public class WriteActivity extends AppCompatActivity {
         multiPartRequest.addStringParam("title", title);
         multiPartRequest.addStringParam("text", text);
         multiPartRequest.addFile("upload", imgPath);
+        multiPartRequest.addStringParam("token",G.token);
+        multiPartRequest.addStringParam("nickName",G.nickName);
+        multiPartRequest.addStringParam("profileUrl",G.profileUrl);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 

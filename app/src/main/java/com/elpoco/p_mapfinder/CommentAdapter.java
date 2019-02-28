@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentAdapter extends RecyclerView.Adapter {
     Context context;
@@ -34,6 +38,7 @@ public class CommentAdapter extends RecyclerView.Adapter {
         CommentItem commentItem= item.get(i);
         vhComment.tvId.setText(commentItem.getId());
         vhComment.tvComment.setText(commentItem.getComment());
+        Glide.with(context).load(commentItem.getProfileUrl()).into(vhComment.ivProfile);
     }
 
     @Override
@@ -43,10 +48,12 @@ public class CommentAdapter extends RecyclerView.Adapter {
 
     class VHComment extends RecyclerView.ViewHolder {
         TextView tvId,tvComment;
+        CircleImageView ivProfile;
         public VHComment(@NonNull View itemView) {
             super(itemView);
             tvId=itemView.findViewById(R.id.tv_comment_id);
             tvComment=itemView.findViewById(R.id.tv_comment_text);
+            ivProfile=itemView.findViewById(R.id.iv_comment_user);
         }
     }
 
