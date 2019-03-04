@@ -18,14 +18,22 @@
         android:layout_marginTop="32dp"
         android:src="@drawable/icon_mari_n" />
 
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/icon_edit"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="58dp"/>
+
     <TextView
         android:id="@+id/header_tv_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="48dp"
+        android:textSize="20sp"
         android:layout_toRightOf="@id/header_iv"
         android:text="nickName"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/colorWhite" />
 
 </RelativeLayout>

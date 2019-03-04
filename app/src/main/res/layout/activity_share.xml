@@ -50,6 +50,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:backgroundTint="#3030A5"
+        app:backgroundTint="#3030A5"
         app:fabSize="normal"
         app:borderWidth="0dp"
         android:src="@drawable/icon_add"

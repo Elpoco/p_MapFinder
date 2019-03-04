@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/mainBackGround"
+android:padding="16dp"
+tools:context=".QnAActivity">
+
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:theme="@style/AppTheme.Toolbar">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:onClick="clickLogo"
+        android:src="@drawable/logo" />
+</android.support.v7.widget.Toolbar>
+
+<EditText
+    android:id="@+id/qna_et_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/toolbar"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/back_round_rec"
+    android:hint="제목" />
+
+<EditText
+    android:id="@+id/qna_et_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/qna_et_title"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/back_round_rec"
+    android:gravity="top"
+    android:hint="내용"
+    android:lines="9" />
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="8dp"
+    android:weightSum="2">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn_bg"
+        android:onClick="clickCancel"
+        android:text="취소" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn_bg"
+        android:onClick="clickSuccess"
+        android:text="완료" />
+</LinearLayout>
+
+
+</RelativeLayout>

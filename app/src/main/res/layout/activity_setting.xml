@@ -85,6 +85,32 @@
             android:checked="true"
             android:textOff=""
             android:textOn="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColor"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tb_vibrate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tb_vibrate"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="문의하기" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_qna"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/tb_vibrate"
+            android:onClick="clickQnA"
+            android:layout_marginRight="16dp"/>
+
     </RelativeLayout>
 
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.nav_view);
 
+        navView.setItemTextColor(ColorStateList.valueOf(Color.WHITE));
         View headerView=navView.getHeaderView(0);
         hTvNickname=headerView.findViewById(R.id.header_tv_nickname);
         hIvProfile=headerView.findViewById(R.id.header_iv);
@@ -262,8 +265,9 @@ public class MainActivity extends AppCompatActivity {
                         G.profileUrl=uri.toString();
                         Toast.makeText(MainActivity.this, "설정 완료", Toast.LENGTH_SHORT).show();
                         firebaseDatabase=FirebaseDatabase.getInstance();
-                        DatabaseReference profileRef=firebaseDatabase.getReference("profiles");
-                        DatabaseReference profileUrlRef=profileRef.child(G.nickName).child("profileUrl");
+                        DatabaseReference profileRef=firebaseDatabase.getReference("profiles").child(G.nickName);
+                        profileRef.push();
+                        DatabaseReference profileUrlRef=profileRef.child("profileUrl");
                         profileUrlRef.setValue(G.profileUrl);
                     }
                 });

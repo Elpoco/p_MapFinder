@@ -56,9 +56,6 @@ public class CommentPushService extends FirebaseMessagingService {
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1010, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
-            builder.setVibrate(new long[]{100,0,100,0})
-            .setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.mococo_seed));
-
             notification=builder.build();
 
             notificationManager.notify(100, notification);
