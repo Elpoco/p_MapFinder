@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         navView = findViewById(R.id.nav_view);
 
         navView.setItemTextColor(ColorStateList.valueOf(Color.WHITE));
+        navView.setNavigationItemSelectedListener(navigationItemSelectedListener);
         View headerView = navView.getHeaderView(0);
         hTvNickname = headerView.findViewById(R.id.header_tv_nickname);
         hIvProfile = headerView.findViewById(R.id.header_iv);
@@ -288,5 +290,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=new NavigationView.OnNavigationItemSelectedListener() {
+        // TODO : 네비 아이템
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_calendar:
+                    startActivity(new Intent(MainActivity.this,CalendarActivity.class));
+                    break;
+                case R.id.menu_my_page:
+                    break;
+            }
+            drawerLayout.closeDrawer(navView);
+            return false;
+        }
+    };
 
 }
