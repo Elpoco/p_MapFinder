@@ -51,6 +51,7 @@ public class IntroActivity extends AppCompatActivity {
         G.profileUrl=pref.getString("profileUrl","https://firebasestorage.googleapis.com/v0/b/loa-map.appspot.com/o/profileImages%2Fprofile_image.png?alt=media&token=8f7a3d8d-114d-4d0e-9e04-2c89ff2d2afd");
         G.login=pref.getBoolean("login",false);
         G.isFirst=pref.getBoolean("isFirst",true);
+        G.versionName=pref.getString("version","1.0");
     }
 
     void getToken() {

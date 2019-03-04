@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.icu.util.VersionInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
     RelativeLayout dialogNotify;
 
+    String version;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,18 +76,24 @@ public class MainActivity extends AppCompatActivity {
         navView = findViewById(R.id.nav_view);
 
         navView.setItemTextColor(ColorStateList.valueOf(Color.WHITE));
-        View headerView=navView.getHeaderView(0);
-        hTvNickname=headerView.findViewById(R.id.header_tv_nickname);
-        hIvProfile=headerView.findViewById(R.id.header_iv);
+        View headerView = navView.getHeaderView(0);
+        hTvNickname = headerView.findViewById(R.id.header_tv_nickname);
+        hIvProfile = headerView.findViewById(R.id.header_iv);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        dialogNotify=findViewById(R.id.dialog_notify);
-        if(!G.login) login();
+        dialogNotify = findViewById(R.id.dialog_notify);
+        if (!G.login) login();
 
-        if(G.isFirst) dialogNotify.setVisibility(View.VISIBLE);
+        version = "1.0";
+        try {
+            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        if (!G.versionName.equals(version)) {dialogNotify.setVisibility(View.VISIBLE); G.versionName=version;}
 
         Glide.with(this).load(G.profileUrl).into(hIvProfile);
         hTvNickname.setText(G.nickName);
@@ -91,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
         hIvProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                startActivityForResult(intent,G.SELECT_IMAGE);
+                startActivityForResult(intent, G.SELECT_IMAGE);
             }
         });
 
@@ -131,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickDialogClose(View view) {
         dialogNotify.setVisibility(View.GONE);
-        G.isFirst=false;
+        G.isFirst = false;
     }
 
     @Override
@@ -189,38 +199,41 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("Vibrate", G.isVibrate);
         editor.putString("nickName", G.nickName);
         editor.putString("profileUrl", G.profileUrl);
-        editor.putString("Token",G.token);
-        editor.putBoolean("isToken",G.isToken);
-        editor.putBoolean("login",G.login);
-        editor.putBoolean("isFirst",G.isFirst);
+        editor.putString("Token", G.token);
+        editor.putBoolean("isToken", G.isToken);
+        editor.putBoolean("login", G.login);
+        editor.putBoolean("isFirst", G.isFirst);
+        editor.putString("version", G.versionName);
 
         editor.commit();
     }
 
     void login() {
-        G.login=true;
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        View view=getLayoutInflater().inflate(R.layout.dialog_nickname,null);
-        etNickname=view.findViewById(R.id.dialog_et_nickname);
-        btnNickname=view.findViewById(R.id.dialog_btn_nickname);
+        G.login = true;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_nickname, null);
+        etNickname = view.findViewById(R.id.dialog_et_nickname);
+        btnNickname = view.findViewById(R.id.dialog_btn_nickname);
         btnNickname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text=etNickname.getText().toString();
-                if(text.length()<2) {
-                    Toast.makeText(MainActivity.this, "2글자 이상 가능합니다.", Toast.LENGTH_SHORT).show(); return;}
-                G.nickName=text;
+                String text = etNickname.getText().toString();
+                if (text.length() < 2) {
+                    Toast.makeText(MainActivity.this, "2글자 이상 가능합니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                G.nickName = text;
                 hTvNickname.setText(text);
                 saveData();
-                firebaseDatabase=FirebaseDatabase.getInstance();
-                DatabaseReference profileRef=firebaseDatabase.getReference("profiles");
-                DatabaseReference profileToken=profileRef.child(G.nickName).child("Token");
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference profileRef = firebaseDatabase.getReference("profiles");
+                DatabaseReference profileToken = profileRef.child(G.nickName).child("Token");
                 profileToken.setValue(G.token);
                 dialog.dismiss();
             }
         });
         builder.setView(view);
-        dialog=builder.create();
+        dialog = builder.create();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -230,7 +243,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) return;
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+                return;
         }
         switch (requestCode) {
             case G.SELECT_IMAGE:
@@ -238,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
                     Uri uri = data.getData();
                     if (uri != null) {
                         Glide.with(this).load(uri).into(hIvProfile);
-                        G.profileUrl=uri+"";
+                        G.profileUrl = uri + "";
                         saveFirebaseData();
                         saveData();
                     }
@@ -248,26 +262,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void saveFirebaseData() {
-        if(G.profileUrl==null) return;
-        firebaseStorage=FirebaseStorage.getInstance();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddhhmmss");
-        String fileName=G.nickName+simpleDateFormat.format(new Date())+".png";
+        if (G.profileUrl == null) return;
+        firebaseStorage = FirebaseStorage.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        String fileName = G.nickName + simpleDateFormat.format(new Date()) + ".png";
 
-        final StorageReference imgRef=firebaseStorage.getReference("profileImages/"+fileName);
+        final StorageReference imgRef = firebaseStorage.getReference("profileImages/" + fileName);
 
-        UploadTask uploadTask=imgRef.putFile(Uri.parse(G.profileUrl));
+        UploadTask uploadTask = imgRef.putFile(Uri.parse(G.profileUrl));
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        G.profileUrl=uri.toString();
+                        G.profileUrl = uri.toString();
                         Toast.makeText(MainActivity.this, "설정 완료", Toast.LENGTH_SHORT).show();
-                        firebaseDatabase=FirebaseDatabase.getInstance();
-                        DatabaseReference profileRef=firebaseDatabase.getReference("profiles").child(G.nickName);
+                        firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference profileRef = firebaseDatabase.getReference("profiles").child(G.nickName);
                         profileRef.push();
-                        DatabaseReference profileUrlRef=profileRef.child("profileUrl");
+                        DatabaseReference profileUrlRef = profileRef.child("profileUrl");
                         profileUrlRef.setValue(G.profileUrl);
                     }
                 });
