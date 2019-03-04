@@ -134,16 +134,16 @@ public class BoardActivity extends AppCompatActivity {
         multiPartRequest.addStringParam("nickName",G.nickName);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         requestQueue.add(multiPartRequest);
         etComment.setText("");
+        commentNotify();
 
         new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -197,4 +197,27 @@ public class BoardActivity extends AppCompatActivity {
         Glide.with(this).load(item.getFilePath()).into(pv);
         new AlertDialog.Builder(this).setView(dialogView).show();
     }
+
+    public void commentNotify() {
+        String serverUrl = "http://elpoco1.dothome.co.kr/commentPush.php";
+        SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        multiPartRequest.addStringParam("boardName",item.getTitle());
+        multiPartRequest.addStringParam("nickName",G.nickName);
+        multiPartRequest.addStringParam("token",item.getToken());
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(multiPartRequest);
+    }
+
 }

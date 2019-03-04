@@ -31,12 +31,6 @@ public class IntroActivity extends AppCompatActivity {
         if(!G.isToken) getToken();
         loadData();
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, G.PERMISSION);
-            }
-        }
-
         timer.schedule(task,2000);
     }
 
@@ -48,25 +42,15 @@ public class IntroActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case G.PERMISSION:
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                }
-                break;
-        }
-    }
-
     void loadData() {
         SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
         G.isSound=pref.getBoolean("Sound",true);
         G.isVibrate=pref.getBoolean("Vibrate",true);
         G.isToken=pref.getBoolean("isToken",false);
         G.nickName=pref.getString("nickName","닉네임");
-        G.profileUrl=pref.getString("profileUrl","https://firebasestorage.googleapis.com/v0/b/loa-map.appspot.com/o/profile_image.png?alt=media&token=00d5b549-2641-4bbc-ad9e-67a7768ebf53");
+        G.profileUrl=pref.getString("profileUrl","https://firebasestorage.googleapis.com/v0/b/loa-map.appspot.com/o/profileImages%2Fprofile_image.png?alt=media&token=8f7a3d8d-114d-4d0e-9e04-2c89ff2d2afd");
         G.login=pref.getBoolean("login",false);
+        G.isFirst=pref.getBoolean("isFirst",true);
     }
 
     void getToken() {

@@ -11,14 +11,16 @@ public class ShareItem implements Parcelable {
     private String text;
     private String filePath;
     private String boardNum;
+    private String token;
 
-    public ShareItem(String title, String nickName, String profileUrl,  String boardNum,String text, String filePath) {
+    public ShareItem(String title, String nickName, String profileUrl,  String boardNum,String text, String filePath,String token) {
         this.title = title;
         this.nickName = nickName;
         this.profileUrl = profileUrl;
         this.text = text;
         this.filePath = filePath;
         this.boardNum = boardNum;
+        this.token = token;
     }
 
     public ShareItem() {
@@ -31,6 +33,7 @@ public class ShareItem implements Parcelable {
         text = in.readString();
         filePath = in.readString();
         boardNum = in.readString();
+        token = in.readString();
     }
 
     public static final Creator<ShareItem> CREATOR = new Creator<ShareItem>() {
@@ -69,6 +72,10 @@ public class ShareItem implements Parcelable {
         return profileUrl;
     }
 
+    public String getToken() {
+        return token;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +89,6 @@ public class ShareItem implements Parcelable {
         dest.writeString(text);
         dest.writeString(filePath);
         dest.writeString(boardNum);
+        dest.writeString(token);
     }
 }

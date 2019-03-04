@@ -75,7 +75,7 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    String title, text, filePath, boardNum, nickName, profileUrl;
+                    String title, text, filePath, boardNum, nickName, profileUrl,token;
                     if (!loadItems.isEmpty()) loadItems.clear();
                     if (response.length() < 7) loadData = response.length();
                     if (response.length() < loadData) loadData = response.length();
@@ -88,9 +88,10 @@ public class ShareActivity extends AppCompatActivity {
                         filePath = jsonObject.getString("filepath");
                         nickName = jsonObject.getString("nickName");
                         profileUrl = jsonObject.getString("profileUrl");
+                        token = jsonObject.getString("token");
 
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
-                        loadItems.add(new ShareItem(title, nickName, profileUrl, boardNum, text, filePath));
+                        loadItems.add(new ShareItem(title, nickName, profileUrl, boardNum, text, filePath,token));
                     }
                     adapter.notifyDataSetChanged();
                     progressBarBottom.setVisibility(View.INVISIBLE);

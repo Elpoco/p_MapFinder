@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">로아 망원경</string>
     <string name="name">지역명</string>
+    <string name="notify">- 아이디를 설정할수있게 되었습니다.\n- 프로필 사진을 설정할수 있습니다.\n- 댓글이 달리면 알림기능이 추가되었습니다.\n\n
+        [개발중인 단계]\n
+        - 캘린더\n
+        - 내 게시물보기\n
+        - 거래 게시판\n</string>
 </resources>

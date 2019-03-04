@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage firebaseStorage;
     FirebaseDatabase firebaseDatabase;
 
+    RelativeLayout dialogNotify;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        dialogNotify=findViewById(R.id.dialog_notify);
         if(!G.login) login();
+
+        if(G.isFirst) dialogNotify.setVisibility(View.VISIBLE);
+
 
         Glide.with(this).load(G.profileUrl).into(hIvProfile);
         hTvNickname.setText(G.nickName);
@@ -117,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickSetting(View view) {
         startActivity(new Intent(this, SettingActivity.class));
+    }
+
+    public void clickDialogClose(View view) {
+        dialogNotify.setVisibility(View.GONE);
+        G.isFirst=false;
     }
 
     @Override
@@ -177,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("Token",G.token);
         editor.putBoolean("isToken",G.isToken);
         editor.putBoolean("login",G.login);
+        editor.putBoolean("isFirst",G.isFirst);
 
         editor.commit();
     }
@@ -191,7 +204,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text=etNickname.getText().toString();
-                if(text.length()<2)return;
+                if(text.length()<2) {
+                    Toast.makeText(MainActivity.this, "2글자 이상 가능합니다.", Toast.LENGTH_SHORT).show(); return;}
                 G.nickName=text;
                 hTvNickname.setText(text);
                 saveData();
@@ -204,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.setView(view);
         dialog=builder.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
 

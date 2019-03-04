@@ -41,6 +41,7 @@ public class ShareAdapter extends RecyclerView.Adapter {
         ShareItem item=items.get(position);
 
         view.tvTitle.setText(item.getTitle());
+        view.tvNickname.setText(item.getNickName());
         Glide.with(context).load(item.getFilePath()).into(view.ivMap);
     }
 
@@ -50,13 +51,14 @@ public class ShareAdapter extends RecyclerView.Adapter {
     }
 
     class VHShare extends RecyclerView.ViewHolder{
-        TextView tvTitle;
+        TextView tvTitle,tvNickname;
         ImageView ivMap;
 
         public VHShare(@NonNull final View itemView) {
             super(itemView);
             tvTitle=itemView.findViewById(R.id.tv_title);
             ivMap=itemView.findViewById(R.id.iv_map);
+            tvNickname=itemView.findViewById(R.id.tv_nickname);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

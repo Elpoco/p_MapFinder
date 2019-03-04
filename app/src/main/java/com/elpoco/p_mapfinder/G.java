@@ -10,6 +10,7 @@ public class G {
 
     public static boolean isSound;
     public static boolean isVibrate;
+    public static boolean isFirst;
 
     public static boolean login;
     public static String nickName;
