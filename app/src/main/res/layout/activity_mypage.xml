@@ -23,12 +23,21 @@
             android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorYellow" />
+
+
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="8dp"
         android:id="@+id/mypage_iv"
         android:layout_width="80dp"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/line"
         android:src="@drawable/icon_mari_n"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_height="80dp" />
 
@@ -42,7 +51,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@id/mypage_iv"
-        android:layout_below="@id/toolbar"/>
+        android:layout_below="@id/line"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mypage_rv"

@@ -2,6 +2,7 @@ package com.elpoco.p_mapfinder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,6 +12,8 @@ import com.google.firebase.storage.FirebaseStorage;
 
 public class QnAActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
+
     EditText etTitle,etText;
     FirebaseDatabase firebaseDatabase;
 
@@ -18,6 +21,11 @@ public class QnAActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qna);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etTitle=findViewById(R.id.qna_et_title);
         etText=findViewById(R.id.qna_et_text);

@@ -23,11 +23,18 @@
             android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorYellow" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/calendar_rv"
         android:layout_width="match_parent"
-        android:layout_below="@id/toolbar"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/line"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:orientation="vertical">
