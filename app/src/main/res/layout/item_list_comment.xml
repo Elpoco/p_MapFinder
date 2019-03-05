@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="id"
             android:textColor="@color/colorWhite"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:layout_toRightOf="@id/iv_comment_user"/>
         <TextView
             android:id="@+id/tv_comment_text"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="comment"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_toRightOf="@id/iv_comment_user"
             android:layout_below="@id/tv_comment_id"/>
     </RelativeLayout>

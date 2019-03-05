@@ -10,13 +10,16 @@
 
     <include layout="@layout/screen_main" />
 
+    <include layout="@layout/dialog_notify" android:visibility="gone"/>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/mainBackGround"
-        app:headerLayout="@layout/navigationview_header"></android.support.design.widget.NavigationView>
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu" />
 
 
 </android.support.v4.widget.DrawerLayout>

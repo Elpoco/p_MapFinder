@@ -8,8 +8,9 @@ android {
         applicationId "com.elpoco.p_mapfinder"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.5"
+        multiDexEnabled true
+        versionCode 9
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,6 +38,10 @@ dependencies {
     implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

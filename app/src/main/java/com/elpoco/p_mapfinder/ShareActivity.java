@@ -1,7 +1,6 @@
 package com.elpoco.p_mapfinder;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -12,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,11 +28,12 @@ import java.util.ArrayList;
 public class ShareActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    ArrayList<ShareItem> loadItems = new ArrayList<>();
     ArrayList<ShareItem> items = new ArrayList<>();
     RecyclerView recyclerView;
     ShareAdapter adapter;
 
-    ProgressBar progressBar;
+    ProgressBar progressBarCenter, progressBarBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +46,11 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.list_share);
-        adapter = new ShareAdapter(items, this);
+        adapter = new ShareAdapter(loadItems, this);
         recyclerView.setAdapter(adapter);
 
-        progressBar=findViewById(R.id.progress_share);
+        progressBarCenter = findViewById(R.id.progress_share_center);
+        progressBarBottom = findViewById(R.id.progress_share_bottom);
 
         loadData();
 
@@ -58,39 +58,86 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(!recyclerView.canScrollVertically(1)){
-                    loadData+=8;
-                    progressBar.setVisibility(View.VISIBLE);
-                    loadData();
+                if (!recyclerView.canScrollVertically(1)&&isFirst) {
+                    isFirst=false;
+                    if(!isData) return;
+                    loading();
+                    progressBarBottom.setVisibility(View.VISIBLE);
                 }
             }
         });
     }
 
-    int loadData=8;
-        String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
+    int loadData,lastData;
+    boolean isData=true, isFirst=true;
+    String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
+
     public void loadData() {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    String title, text, filePath, boardNum;
-                    if(!items.isEmpty()) items.clear();
-                    if(response.length()<8) loadData=response.length();
-                    if(response.length()<loadData) loadData=response.length();
-                    for (int i=0; i < loadData; i++) {
+                    String title, text, filePath, boardNum, nickName, profileUrl,token;
+                    if (!loadItems.isEmpty()) loadItems.clear();
+                    if (response.length() < 6) loadData = 0;
+                    else loadData=response.length()-6;
+                    for (int i = response.length() - 1; i >=loadData; i--) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         boardNum = jsonObject.getString("num");
                         title = jsonObject.getString("title");
                         text = jsonObject.getString("text");
                         filePath = jsonObject.getString("filepath");
+                        nickName = jsonObject.getString("nickName");
+                        profileUrl = jsonObject.getString("profileUrl");
+                        token = jsonObject.getString("token");
 
                         filePath = "http://elpoco1.dothome.co.kr/" + filePath;
-                        items.add(new ShareItem(title, text, filePath, boardNum));
+                        loadItems.add(new ShareItem(title, nickName, profileUrl, boardNum, text, filePath,token));
                     }
                     adapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBarCenter.setVisibility(View.INVISIBLE);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 실패
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    public void loading() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    String title, text, filePath, boardNum, nickName, profileUrl,token;
+                    lastData=loadData;
+                    if(loadData-3<0) {lastData=3; isData=false;}
+                    for (int i = loadData-1; i >=lastData-3; i--) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        boardNum = jsonObject.getString("num");
+                        title = jsonObject.getString("title");
+                        text = jsonObject.getString("text");
+                        filePath = jsonObject.getString("filepath");
+                        nickName = jsonObject.getString("nickName");
+                        profileUrl = jsonObject.getString("profileUrl");
+                        token = jsonObject.getString("token");
+
+                        filePath = "http://elpoco1.dothome.co.kr/" + filePath;
+                        loadItems.add(new ShareItem(title, nickName, profileUrl, boardNum, text, filePath,token));
+                    }
+                    adapter.notifyDataSetChanged();
+                    progressBarBottom.setVisibility(View.INVISIBLE);
+                    isFirst=true;
+                    if(loadData-3>=0) loadData+=-3;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

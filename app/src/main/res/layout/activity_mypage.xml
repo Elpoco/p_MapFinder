@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackGround"
+    android:orientation="vertical"
     tools:context=".MyPageActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/AppTheme.Toolbar">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:onClick="clickLogo"
+            android:src="@drawable/logo" />
+    </android.support.v7.widget.Toolbar>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mypage_iv"
+        android:layout_width="80dp"
+        android:layout_below="@id/toolbar"
+        android:src="@drawable/icon_mari_n"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/mypage_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/mypage_iv"
+        android:layout_below="@id/toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mypage_rv"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/mypage_iv"
+        android:layout_height="match_parent"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:orientation="vertical"></android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/mypage_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>

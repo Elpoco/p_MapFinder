@@ -3,58 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/mainBackGround"
-    tools:context=".ShareActivity">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CalendarActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.Toolbar">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/logo"
             android:layout_gravity="center"
+            android:clickable="true"
             android:onClick="clickLogo"
-            android:clickable="true"/>
+            android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_share"
-        android:layout_marginTop="8dp"
+        android:id="@+id/calendar_rv"
         android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="8dp"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        android:layout_below="@id/toolbar"
-        android:orientation="vertical"></android.support.v7.widget.RecyclerView>
+        android:orientation="vertical">
+
+    </android.support.v7.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progress_share_center"
+        android:id="@+id/calendar_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-    <ProgressBar
-        android:id="@+id/progress_share_bottom"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="#3030A5"
-        app:backgroundTint="#3030A5"
-        app:fabSize="normal"
-        app:borderWidth="0dp"
-        android:src="@drawable/icon_add"
-        android:layout_margin="16dp"
-        android:onClick="clickAdd"/>
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

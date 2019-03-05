@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_notify"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="60dp"
+        android:background="@color/colorYellow"
+        android:layout_centerInParent="true"
+        android:padding="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mainBackGround">
+
+            <ImageView
+                android:id="@+id/dialog_notify_close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:src="@drawable/icon_close"
+                android:onClick="clickDialogClose"/>
+
+            <TextView
+                android:id="@+id/dialog_notify_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:text="공지사항"
+                android:textColor="@color/textColor"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/dialog_notify_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_notify_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/notify"
+                android:textColor="@color/textColor" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.elpoco.p_mapfinder;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -91,5 +92,9 @@ public class SettingActivity extends AppCompatActivity {
         editor.putBoolean("Vibrate",G.isVibrate);
 
         editor.commit();
+    }
+
+    public void clickQnA(View view) {
+        startActivity(new Intent(this,QnAActivity.class));
     }
 }

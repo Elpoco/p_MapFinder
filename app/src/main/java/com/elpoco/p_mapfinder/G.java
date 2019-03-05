@@ -7,10 +7,15 @@ public class G {
     public static final int WRITE_OK = 12;
     public static final int PERMISSION = 100;
     public static String[] inventory = new String[10];
+
     public static boolean isSound;
     public static boolean isVibrate;
+    public static boolean isFirst;
+    public static String versionName;
+
     public static boolean login;
     public static String nickName;
+    public static boolean isToken;
     public static String token;
     public static String profileUrl;
 }

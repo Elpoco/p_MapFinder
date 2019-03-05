@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/mainBackGround"
     tools:context=".MapActivity">
 
@@ -12,20 +13,54 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.Toolbar">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/logo"
             android:layout_gravity="center"
             android:clickable="true"
-            android:onClick="clickLogo"/>
+            android:onClick="clickLogo"
+            android:src="@drawable/logo" />
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/sinners"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="8dp"
+        android:weightSum="3">
+
+        <Spinner
+            android:id="@+id/sp_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+        <Spinner
+            android:id="@+id/sp_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+        <Spinner
+            android:id="@+id/sp_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_bar"
+            android:spinnerMode="dropdown"></Spinner>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_below="@id/sinners"
         android:background="@drawable/background_map"
         android:scaleType="centerCrop">
 
@@ -57,179 +92,168 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="8dp"
             android:background="@drawable/back"></Spinner>
+
         <Spinner
             android:id="@+id/sp_hint"
             android:layout_width="wrap_content"
-            android:background="@drawable/back"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="32dp"
-            android:layout_marginLeft="8dp"></Spinner>
+            android:background="@drawable/back"></Spinner>
 
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/sinners"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:weightSum="3"
-        android:layout_marginTop="8dp">
-
-        <Spinner
-            android:id="@+id/sp_1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/spinner_bar"
-            android:spinnerMode="dropdown"></Spinner>
-
-        <Spinner
-            android:id="@+id/sp_2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/spinner_bar"
-            android:spinnerMode="dropdown"></Spinner>
-
-        <Spinner
-            android:id="@+id/sp_3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/spinner_bar"
-            android:spinnerMode="dropdown"></Spinner>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_below="@id/back"
-        android:background="@drawable/inventory"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:orientation="horizontal"
             android:weightSum="5">
+
             <TextView
                 android:id="@+id/tv_inventory00"
-                android:tag="0"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="0"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory01"
                 android:layout_width="0dp"
-                android:tag="1"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="1"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory02"
                 android:layout_width="0dp"
-                android:tag="2"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="2"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory03"
-                android:tag="3"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="3"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory04"
-                android:tag="4"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="4"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:orientation="horizontal"
             android:weightSum="5">
+
             <TextView
                 android:id="@+id/tv_inventory05"
-                android:tag="5"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="5"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory06"
-                android:tag="6"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="6"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory07"
-                android:tag="7"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="7"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory08"
-                android:tag="8"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="8"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/tv_inventory09"
-                android:tag="9"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/inventory1"
                 android:clickable="true"
-                android:textColor="@color/textColor"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:onClick="clickInventory"/>
+                android:onClick="clickInventory"
+                android:tag="9"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

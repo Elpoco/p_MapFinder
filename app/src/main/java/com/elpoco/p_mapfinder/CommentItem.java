@@ -1,23 +1,29 @@
 package com.elpoco.p_mapfinder;
 
 public class CommentItem {
-    private String id,comment, boardNum;
+    private String nickName;
+    private String comment;
+    private String profileUrl;
 
-    public CommentItem(String id, String comment,String num) {
-        this.id = id;
-        this.comment = comment;
-        this.boardNum =num;
+    public CommentItem() {
     }
 
+    public CommentItem(String id, String comment, String profileUrl) {
+        this.nickName = id;
+        this.comment = comment;
+        this.profileUrl = profileUrl;
+    }
+
+
     public String getId() {
-        return id;
+        return nickName;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public String getBoardNum() {
-        return boardNum;
+    public String getProfileUrl() {
+        return profileUrl;
     }
 }

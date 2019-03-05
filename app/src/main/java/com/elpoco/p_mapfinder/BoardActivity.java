@@ -33,12 +33,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class BoardActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
     ScrollView scrollView;
-    TextView tvTitle, tvText;
+    CircleImageView ivProfile;
+    TextView tvTitle, tvNickname, tvText;
     ImageView ivMap;
     RecyclerView recyclerView;
     EditText etComment;
@@ -62,7 +65,9 @@ public class BoardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         scrollView=findViewById(R.id.scroll_board);
+        ivProfile=findViewById(R.id.iv_board_user);
         tvTitle = findViewById(R.id.tv_title);
+        tvNickname=findViewById(R.id.tv_nickname);
         tvText = findViewById(R.id.tv_text);
         ivMap = findViewById(R.id.iv_map);
         etComment = findViewById(R.id.et_comment);
@@ -75,6 +80,8 @@ public class BoardActivity extends AppCompatActivity {
 
         item = getIntent().getExtras().getParcelable("item");
 
+        Glide.with(this).load(item.getProfileUrl()).into(ivProfile);
+        tvNickname.setText(item.getNickName());
         tvTitle.setText(item.getTitle());
         tvText.setText(item.getText());
         Glide.with(this).load(item.getFilePath()).into(ivMap);
@@ -123,18 +130,20 @@ public class BoardActivity extends AppCompatActivity {
 
         multiPartRequest.addStringParam("boardNum", boardNum);
         multiPartRequest.addStringParam("comment", comment);
+        multiPartRequest.addStringParam("profileUrl",G.profileUrl);
+        multiPartRequest.addStringParam("nickName",G.nickName);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         requestQueue.add(multiPartRequest);
         etComment.setText("");
+        commentNotify();
 
         new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -149,14 +158,16 @@ public class BoardActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    String boardNum, comment;
+                    String boardNum, comment,nickName,profileUrl;
                     if (!comments.isEmpty()) comments.clear();
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
                         boardNum = jsonObject.getString("boardNum");
                         if (thisBoardNum != Integer.parseInt(boardNum)) continue;
                         comment = jsonObject.getString("comment");
-                        comments.add(0, new CommentItem("익명", comment, "aa"));
+                        nickName=jsonObject.getString("nickName");
+                        profileUrl=jsonObject.getString("profileUrl");
+                        comments.add(new CommentItem(nickName, comment, profileUrl));
                     }
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -186,4 +197,27 @@ public class BoardActivity extends AppCompatActivity {
         Glide.with(this).load(item.getFilePath()).into(pv);
         new AlertDialog.Builder(this).setView(dialogView).show();
     }
+
+    public void commentNotify() {
+        String serverUrl = "http://elpoco1.dothome.co.kr/commentPush.php";
+        SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        multiPartRequest.addStringParam("boardName",item.getTitle());
+        multiPartRequest.addStringParam("nickName",G.nickName);
+        multiPartRequest.addStringParam("token",item.getToken());
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(multiPartRequest);
+    }
+
 }
