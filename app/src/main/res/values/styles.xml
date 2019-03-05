@@ -10,7 +10,6 @@
 
     <style name="AppTheme.Toolbar">
         <item name="titleTextColor">@color/colorWhite</item>
-        <!--액션바에 놓여질 메뉴아이템버튼들(Up버튼 or 옵션메뉴 버튼들)의 색상-->
         <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 
