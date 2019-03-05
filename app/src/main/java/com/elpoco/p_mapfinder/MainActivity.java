@@ -292,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=new NavigationView.OnNavigationItemSelectedListener() {
-        // TODO : 네비 아이템
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
@@ -300,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,CalendarActivity.class));
                     break;
                 case R.id.menu_my_page:
+                    startActivity(new Intent(MainActivity.this,MyPageActivity.class));
                     break;
             }
             drawerLayout.closeDrawer(navView);
