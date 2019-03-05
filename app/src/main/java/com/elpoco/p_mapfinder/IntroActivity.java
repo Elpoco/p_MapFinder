@@ -30,7 +30,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if(!G.isToken) getToken();
         loadData();
-
+        if(G.token==null) getToken();
         timer.schedule(task,2000);
     }
 
@@ -47,6 +47,7 @@ public class IntroActivity extends AppCompatActivity {
         G.isSound=pref.getBoolean("Sound",true);
         G.isVibrate=pref.getBoolean("Vibrate",true);
         G.isToken=pref.getBoolean("isToken",false);
+        G.token=pref.getString("Token",null);
         G.nickName=pref.getString("nickName","닉네임");
         G.profileUrl=pref.getString("profileUrl","https://firebasestorage.googleapis.com/v0/b/loa-map.appspot.com/o/profileImages%2Fprofile_image.png?alt=media&token=8f7a3d8d-114d-4d0e-9e04-2c89ff2d2afd");
         G.login=pref.getBoolean("login",false);
