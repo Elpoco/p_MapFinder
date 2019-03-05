@@ -58,16 +58,18 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (!recyclerView.canScrollVertically(1)) {
-                    loadData += 4;
+                if (!recyclerView.canScrollVertically(1)&&isFirst) {
+                    isFirst=false;
+                    if(!isData) return;
+                    loading();
                     progressBarBottom.setVisibility(View.VISIBLE);
-                    loadData();
                 }
             }
         });
     }
 
-    int loadData = 0;
+    int loadData,lastData;
+    boolean isData=true, isFirst=true;
     String serverUrl = "http://elpoco1.dothome.co.kr/loadDB.php";
 
     public void loadData() {
@@ -77,9 +79,48 @@ public class ShareActivity extends AppCompatActivity {
                 try {
                     String title, text, filePath, boardNum, nickName, profileUrl,token;
                     if (!loadItems.isEmpty()) loadItems.clear();
-                    if (response.length() < 7) loadData = response.length();
-                    if (response.length() < loadData) loadData = response.length();
-                    for (int i = response.length() - 1; i >= 0; i--) {
+                    if (response.length() < 6) loadData = 0;
+                    else loadData=response.length()-6;
+                    for (int i = response.length() - 1; i >=loadData; i--) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        boardNum = jsonObject.getString("num");
+                        title = jsonObject.getString("title");
+                        text = jsonObject.getString("text");
+                        filePath = jsonObject.getString("filepath");
+                        nickName = jsonObject.getString("nickName");
+                        profileUrl = jsonObject.getString("profileUrl");
+                        token = jsonObject.getString("token");
+
+                        filePath = "http://elpoco1.dothome.co.kr/" + filePath;
+                        loadItems.add(new ShareItem(title, nickName, profileUrl, boardNum, text, filePath,token));
+                    }
+                    adapter.notifyDataSetChanged();
+                    progressBarCenter.setVisibility(View.INVISIBLE);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 실패
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    public void loading() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    String title, text, filePath, boardNum, nickName, profileUrl,token;
+                    lastData=loadData;
+                    if(loadData-3<0) {lastData=3; isData=false;}
+                    for (int i = loadData-1; i >=lastData-3; i--) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         boardNum = jsonObject.getString("num");
@@ -95,6 +136,8 @@ public class ShareActivity extends AppCompatActivity {
                     }
                     adapter.notifyDataSetChanged();
                     progressBarBottom.setVisibility(View.INVISIBLE);
+                    isFirst=true;
+                    if(loadData-3>=0) loadData+=-3;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -108,11 +151,6 @@ public class ShareActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
-        progressBarCenter.setVisibility(View.INVISIBLE);
-    }
-
-    public void dataSetting() {
-
     }
 
     public void clickAdd(View view) {
