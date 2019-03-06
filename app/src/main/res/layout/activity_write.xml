@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/mainBackGround"
     tools:context=".WriteActivity">
 
@@ -56,7 +57,7 @@
             android:background="@drawable/back_round_rec"
             android:gravity="top"
             android:hint="내용"
-            android:lines="9" />
+            android:lines="6" />
 
         <RelativeLayout
             android:layout_width="match_parent"

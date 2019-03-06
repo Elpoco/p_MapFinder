@@ -13,6 +13,9 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +43,8 @@ public class CalendarActivity extends AppCompatActivity {
     ProgressBar progressBar;
     int loadData=20,lastData;
     boolean isData=true, isFirst=true;
+
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,10 @@ public class CalendarActivity extends AppCompatActivity {
                 }
             }
         });
+
+        adView=findViewById(R.id.adView);
+        AdRequest adRequest=new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         timerThread = new timerThread();
         timerThread.start();

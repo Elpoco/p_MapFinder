@@ -6,6 +6,7 @@ public class G {
     public static final int SELECT_IMAGE = 11;
     public static final int WRITE_OK = 12;
     public static final int PERMISSION = 100;
+
     public static String[] inventory = new String[10];
 
     public static boolean isSound;

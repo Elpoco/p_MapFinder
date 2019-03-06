@@ -8,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,6 +29,9 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class WriteActivity extends AppCompatActivity {
 
@@ -41,6 +42,8 @@ public class WriteActivity extends AppCompatActivity {
     EditText etTitle, etText;
     ImageView ivMap;
     String imgPath;
+
+    InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,25 @@ public class WriteActivity extends AppCompatActivity {
         etText = findViewById(R.id.et_text);
         ivMap = findViewById(R.id.iv_map);
         permission();
+
+        interstitialAd=new InterstitialAd(this);
+        interstitialAd.setAdUnitId(String.valueOf(R.string.adUnitIdInterstitial));
+        AdRequest adRequest=new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
+
+        interstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+//                Toast.makeText(WriteActivity.this, "success", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+//                Toast.makeText(WriteActivity.this, ""+i, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -109,6 +131,8 @@ public class WriteActivity extends AppCompatActivity {
             return;
         }
 
+        if (interstitialAd.isLoaded()) interstitialAd.show();
+
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -147,11 +171,11 @@ public class WriteActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                finish();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(WriteActivity.this, "게시물이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
             }
@@ -203,6 +227,7 @@ public class WriteActivity extends AppCompatActivity {
                 }
                 break;
         }
+
     }
 
     void permission() {
