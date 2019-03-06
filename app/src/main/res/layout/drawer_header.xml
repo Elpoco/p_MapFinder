@@ -8,8 +8,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
-        android:clickable="true"
-        android:src="@drawable/icon_mari_n" />
+        android:clickable="true" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/header_iv"

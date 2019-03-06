@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.github.chrisbanes.photoview.OnMatrixChangedListener;
 import com.github.chrisbanes.photoview.OnScaleChangedListener;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -65,6 +67,11 @@ public class MapSeaActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        AdView adView;
+        adView=findViewById(R.id.adView);
+        AdRequest adRequest=new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 

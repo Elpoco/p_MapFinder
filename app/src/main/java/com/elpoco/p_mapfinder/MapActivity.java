@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class MapActivity extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -23,6 +26,8 @@ public class MapActivity extends AppCompatActivity {
 
     String[] mapNameSong = {"", "루테란", "토토이크", "유디아", "베른", "아르데타인\n아르테미스", "애니츠", "슈샤이어"};
     String[] mapName = {"아르테미스", "유디아", "루테란 서부", "루테란 동부", "토토이크", "애니츠", "아르데타인", "베른", "슈사이어", "로헨델", ""};
+
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +97,10 @@ public class MapActivity extends AppCompatActivity {
             inventory=findViewById(R.id.tv_inventory00+i);
             inventory.setText(G.inventory[i]);
         }
+
+        adView=findViewById(R.id.adView);
+        AdRequest adRequest=new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     AdapterView.OnItemSelectedListener selectedListener = new AdapterView.OnItemSelectedListener() {
@@ -135,7 +144,7 @@ public class MapActivity extends AppCompatActivity {
                             {13},
                             {11, 15, 16},
                             {2, 3, 9},
-                            {4,6,7,13}
+                            {4,6,7,14}
                     };
                     break;
             }

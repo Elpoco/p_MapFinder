@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -15,6 +18,7 @@ import android.support.v4.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.io.File;
 import java.util.Map;
 
 import static android.app.Notification.DEFAULT_ALL;
@@ -29,6 +33,8 @@ public class CommentPushService extends FirebaseMessagingService {
 //        super.onMessageReceived(remoteMessage);
         Map<String, String> datas = remoteMessage.getData();
 
+        Uri uri=Uri.parse("android.resource://" + getPackageName() +"/" + R.raw.mococo_seed);
+
         if (datas != null) {
             String name = datas.get("boardName");
             String msg = datas.get("nickName");
@@ -38,10 +44,8 @@ public class CommentPushService extends FirebaseMessagingService {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 String channelId = "ch01";
                 String channelName = "Channel 01";
-
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
                 notificationManager.createNotificationChannel(notificationChannel);
-
                 builder = new NotificationCompat.Builder(this, channelId);
             } else {
                 builder = new NotificationCompat.Builder(this, null);
@@ -56,9 +60,15 @@ public class CommentPushService extends FirebaseMessagingService {
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1010, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
+            Ringtone mococo=RingtoneManager.getRingtone(this,uri);
+
+            AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+
             notification=builder.build();
 
             notificationManager.notify(100, notification);
+            if(audioManager.getRingerMode()==AudioManager.RINGER_MODE_NORMAL) if(G.isSound) mococo.play();
         }
     }
 }
