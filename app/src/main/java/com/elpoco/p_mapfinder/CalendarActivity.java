@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -79,39 +80,50 @@ public class CalendarActivity extends AppCompatActivity {
                                 conTime=doc.select("span.gentime");
                                 conName = doc.select("span.npcname");
                                 conIcon =doc.select("img.npcicon");
+                                loadData();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            int i=0;
-                            if(conTime!=null) {
-                                isData=true;
-                                items.clear();
-                                String icon;
-                                String[] iconName;
-                                for (Element element : conTime) {
-                                    icon=conIcon.get(i).attr("src");
-                                    iconName=icon.split("/");
-                                    items.add(new CalendarItem(element.text(), conName.get(i).text(), iconName[iconName.length-1]));
-                                    i += 1;
-                                }
-                            } else {
-                                isData=false;
-                            }
+
                             return null;
                         }
 
                         @Override
                         protected void onPostExecute(Object o) {
                             super.onPostExecute(o);
-                            adapter.notifyDataSetChanged();
-                            progressBar.setVisibility(View.INVISIBLE);
+                            if(isData) {
+                                adapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
                         }
                     }.execute();
                     if(!isData)Thread.sleep(1000 * 60);
+                    else {
+                        Thread.sleep(1000*5);
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    void loadData() {
+        int i=0;
+        if(conTime!=null) {
+            isData=true;
+            items.clear();
+            String icon;
+            String[] iconName;
+            for (Element element : conTime) {
+                icon=conIcon.get(i).attr("src");
+                iconName=icon.split("/");
+                items.add(new CalendarItem(element.text(), conName.get(i).text(), iconName[iconName.length-1]));
+                i += 1;
+            }
+            isData=true;
+        } else {
+            isData=false;
         }
     }
 
