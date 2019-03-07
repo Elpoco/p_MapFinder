@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView hTvNickname;
     CircleImageView hIvProfile;
-    AlertDialog dialog;
+    AlertDialog dialog,dialogMap;
 
     FirebaseStorage firebaseStorage;
     FirebaseDatabase firebaseDatabase;
@@ -113,10 +113,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickMap(View view) {
         startActivity(new Intent(this, MapActivity.class));
+        dialogMap.dismiss();
     }
 
     public void clickSeaMap(View view) {
         startActivity(new Intent(this, MapSeaActivity.class));
+        dialogMap.dismiss();
     }
 
     public void clickShop(View view) {
@@ -169,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         View layout=getLayoutInflater().inflate(R.layout.dialog_maps,null);
         builder.setView(layout);
-        builder.show();
+        dialogMap=builder.create();
+        dialogMap.show();
     }
 
     class backBtnThread extends Thread {
