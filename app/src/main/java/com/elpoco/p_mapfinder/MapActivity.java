@@ -4,11 +4,13 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -17,9 +19,9 @@ public class MapActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     Spinner sp_1, sp_2, sp_3;
-    Spinner sp_song, sp_hint;
+    Spinner sp_song, sp_hint,sp_map_name;
     ArrayAdapter adapter_1, adapter_2, adapter_3;
-    ArrayAdapter adapterSong, adapterHint;
+    ArrayAdapter adapterSong, adapterHint,adapterMapName;
 
     TextView tv;
     TextView inventory;
@@ -40,30 +42,34 @@ public class MapActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tv = findViewById(R.id.tv);
-
+        tv.setText("");
         sp_1 = findViewById(R.id.sp_1);
         sp_2 = findViewById(R.id.sp_2);
         sp_3 = findViewById(R.id.sp_3);
         sp_song = findViewById(R.id.sp_song);
         sp_hint = findViewById(R.id.sp_hint);
+        sp_map_name = findViewById(R.id.sp_map_name);
 
         adapter_1 = ArrayAdapter.createFromResource(this, R.array.map_data_a, R.layout.item_spinner);
         adapter_2 = ArrayAdapter.createFromResource(this, R.array.map_data_b, R.layout.item_spinner);
         adapter_3 = ArrayAdapter.createFromResource(this, R.array.map_data_c, R.layout.item_spinner);
         adapterSong = ArrayAdapter.createFromResource(this, R.array.map_song, R.layout.item_spinner);
         adapterHint = ArrayAdapter.createFromResource(this, R.array.map_hint, R.layout.item_spinner);
+        adapterMapName = ArrayAdapter.createFromResource(this, R.array.map_name, R.layout.item_spinner);
 
         sp_1.setAdapter(adapter_1);
         sp_2.setAdapter(adapter_2);
         sp_3.setAdapter(adapter_3);
         sp_song.setAdapter(adapterSong);
         sp_hint.setAdapter(adapterHint);
+        sp_map_name.setAdapter(adapterMapName);
 
         adapter_1.setDropDownViewResource(R.layout.spinner_drop);
         adapter_2.setDropDownViewResource(R.layout.spinner_drop);
         adapter_3.setDropDownViewResource(R.layout.spinner_drop);
         adapterSong.setDropDownViewResource(R.layout.spinner_drop);
         adapterHint.setDropDownViewResource(R.layout.spinner_drop);
+        adapterMapName.setDropDownViewResource(R.layout.spinner_drop);
 
         sp_1.setOnItemSelectedListener(selectedListener);
         sp_2.setOnItemSelectedListener(selectedListener);
@@ -71,7 +77,13 @@ public class MapActivity extends AppCompatActivity {
         sp_song.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) return;
                 tv.setText(mapNameSong[position]);
+                sp_1.setSelection(0);
+                sp_2.setSelection(0);
+                sp_3.setSelection(0);
+                sp_hint.setSelection(0);
+                sp_map_name.setSelection(0);
             }
 
             @Override
@@ -82,9 +94,32 @@ public class MapActivity extends AppCompatActivity {
         sp_hint.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) return;
                 Resources res = getResources();
                 String[] arr = res.getStringArray(R.array.map_answer);
                 tv.setText(arr[position]);
+                sp_1.setSelection(0);
+                sp_2.setSelection(0);
+                sp_3.setSelection(0);
+                sp_song.setSelection(0);
+                sp_map_name.setSelection(0);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        sp_map_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0) return;
+                String[] arr=getResources().getStringArray(R.array.map_name_answer);
+                tv.setText(arr[position]);
+                sp_1.setSelection(0);
+                sp_2.setSelection(0);
+                sp_3.setSelection(0);
+                sp_song.setSelection(0);
+                sp_hint.setSelection(0);
             }
 
             @Override
@@ -94,18 +129,19 @@ public class MapActivity extends AppCompatActivity {
         });
 
         for (int i = 0; i < 10; i++) {
-            inventory=findViewById(R.id.tv_inventory00+i);
+            inventory = findViewById(R.id.tv_inventory00 + i);
             inventory.setText(G.inventory[i]);
         }
 
-        adView=findViewById(R.id.adView);
-        AdRequest adRequest=new AdRequest.Builder().build();
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }
 
     AdapterView.OnItemSelectedListener selectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if(position==0) return;
             int[][] arr = new int[0][];
             switch (parent.getId()) {
                 case R.id.sp_1:
@@ -118,6 +154,11 @@ public class MapActivity extends AppCompatActivity {
                             {3, 8, 9},
                             {2, 6, 14}
                     };
+                    sp_2.setSelection(0);
+                    sp_3.setSelection(0);
+                    sp_hint.setSelection(0);
+                    sp_song.setSelection(0);
+                    sp_map_name.setSelection(0);
                     break;
                 case R.id.sp_2:
                     arr = new int[][]{
@@ -132,6 +173,11 @@ public class MapActivity extends AppCompatActivity {
                             {1, 13},
                             {7}
                     };
+                    sp_1.setSelection(0);
+                    sp_3.setSelection(0);
+                    sp_hint.setSelection(0);
+                    sp_song.setSelection(0);
+                    sp_map_name.setSelection(0);
                     break;
                 case R.id.sp_3:
                     arr = new int[][]{
@@ -144,8 +190,13 @@ public class MapActivity extends AppCompatActivity {
                             {13},
                             {11, 15, 16},
                             {2, 3, 9},
-                            {4,6,7,14}
+                            {4, 6, 7, 14}
                     };
+                    sp_1.setSelection(0);
+                    sp_2.setSelection(0);
+                    sp_hint.setSelection(0);
+                    sp_song.setSelection(0);
+                    sp_map_name.setSelection(0);
                     break;
             }
             int index = mapName.length - 1;
@@ -155,11 +206,11 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
             tv.setText(mapName[index]);
+
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
         }
     };
 
@@ -168,10 +219,10 @@ public class MapActivity extends AppCompatActivity {
     }
 
     public void clickInventory(View view) {
-        inventory=findViewById(view.getId());
+        inventory = findViewById(view.getId());
         inventory.setText(tv.getText());
-        int index=Integer.parseInt(inventory.getTag().toString());
-        G.inventory[index]=inventory.getText().toString();
+        int index = Integer.parseInt(inventory.getTag().toString());
+        G.inventory[index] = inventory.getText().toString();
     }
 }
 

@@ -4,10 +4,14 @@ import android.content.Context;
 import android.renderscript.Script;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -17,10 +21,13 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     LayoutInflater inflater;
     ArrayList<CalendarItem> items;
 
+    String[] icons;
+
     public CalendarAdapter(Context context, LayoutInflater inflater, ArrayList<CalendarItem> items) {
         this.context = context;
         this.inflater = inflater;
         this.items=items;
+        icons=context.getResources().getStringArray(R.array.calendar_icon);
     }
 
     @NonNull
@@ -36,9 +43,12 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         VHCalendar vh= (VHCalendar) viewHolder;
         CalendarItem item=items.get(i);
         vh.tvDay.setText(item.getDay());
-        vh.tvTime.setText(item.getTime());
         vh.tvName.setText(item.getName());
-
+        int index;
+        for (index = 0; index < icons.length; index++) {
+            if(item.getIcon().equals(icons[index])) break;
+        }
+        Glide.with(context).load(R.drawable.icon_calendar_01+index).into(vh.iv);
     }
 
     @Override
@@ -47,12 +57,13 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     }
 
     class VHCalendar extends RecyclerView.ViewHolder {
-        TextView tvDay,tvTime,tvName;
+        TextView tvDay,tvName;
+        ImageView iv;
         public VHCalendar(@NonNull View itemView) {
             super(itemView);
             tvDay= itemView.findViewById(R.id.calendar_tv_day);
-            tvTime= itemView.findViewById(R.id.calendar_tv_time);
             tvName= itemView.findViewById(R.id.calendar_tv_name);
+            iv=itemView.findViewById(R.id.calendar_icon);
         }
     }
 }

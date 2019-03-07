@@ -34,7 +34,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="공지사항"
-                android:textColor="@color/textColor"
+                android:textColor="@color/colorWhite"
                 android:textSize="24dp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/notify"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
     </RelativeLayout>
