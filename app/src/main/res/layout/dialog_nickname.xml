@@ -4,9 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@color/mainBackGround"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
     android:gravity="center"
+    android:padding="8dp"
     android:visibility="visible">
 
     <TextView

@@ -54,11 +54,7 @@ public class SettingActivity extends AppCompatActivity {
 
         tbSound.setChecked(G.isSound);
         tbVibrate.setChecked(G.isVibrate);
-
-        rewardedVideoAd= MobileAds.getRewardedVideoAdInstance(this);
-        rewardedVideoAd.setRewardedVideoAdListener(rewardedVideoAdListener);
-        rewardedVideoAd.loadAd(String.valueOf(R.string.adUnitIdReward),new AdRequest.Builder().build());
-
+        MobileAds.initialize(this, String.valueOf(R.string.adMobId));
     }
 
     CompoundButton.OnCheckedChangeListener checkedChangeListener=new CompoundButton.OnCheckedChangeListener() {
@@ -67,9 +63,11 @@ public class SettingActivity extends AppCompatActivity {
             switch (buttonView.getId()) {
                 case R.id.tb_sound:
                     G.isSound=isChecked;
+                    if (G.isSound) soundPool.play(alarm, 1, 1, 10, 0, 1);
                     break;
                 case R.id.tb_vibrate:
                     G.isVibrate=isChecked;
+                    if (G.isVibrate) vibrator.vibrate(500);
                     break;
             }
         }
@@ -78,22 +76,6 @@ public class SettingActivity extends AppCompatActivity {
     public void clickLogo(View view) {
         finish();
     }
-
-    public void clickSetting(View view) {
-        try {
-            switch (view.getId()) {
-                case R.id.tb_sound:
-                    if (G.isSound) soundPool.play(alarm, 1, 1, 10, 0, 1);
-                    break;
-                case R.id.tb_vibrate:
-                    if (G.isVibrate) vibrator.vibrate(500);
-                    break;
-            }
-        } catch (Exception e){
-
-        }
-    }
-
 
     @Override
     protected void onStop() {
@@ -117,12 +99,15 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void clickPlay(View view) {
-        rewardedVideoAd.show();
+        rewardedVideoAd= MobileAds.getRewardedVideoAdInstance(this);
+        rewardedVideoAd.setRewardedVideoAdListener(rewardedVideoAdListener);
+        rewardedVideoAd.loadAd(String.valueOf(R.string.adUnitIdReward),new AdRequest.Builder().build());
     }
 
     RewardedVideoAdListener rewardedVideoAdListener=new RewardedVideoAdListener() {
         @Override
         public void onRewardedVideoAdLoaded() {
+            rewardedVideoAd.show();
 //            Toast.makeText(SettingActivity.this, "success", Toast.LENGTH_SHORT).show();
         }
 
@@ -153,7 +138,7 @@ public class SettingActivity extends AppCompatActivity {
 
         @Override
         public void onRewardedVideoAdFailedToLoad(int i) {
-//            Toast.makeText(SettingActivity.this, ""+i, Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingActivity.this, ""+i, Toast.LENGTH_SHORT).show();
         }
 
         @Override

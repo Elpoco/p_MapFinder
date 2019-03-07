@@ -49,16 +49,16 @@
             android:layout_height="150dp"
             android:layout_marginRight="8dp"
             android:clickable="true"
-            android:onClick="clickMap"
-            android:src="@drawable/click_map" />
+            android:onClick="clickMaps"
+            android:src="@drawable/click_maps" />
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="8dp"
             android:clickable="true"
-            android:onClick="clickSeaMap"
-            android:src="@drawable/click_sea" />
+            android:onClick="clickCalendar"
+            android:src="@drawable/click_calendar" />
     </LinearLayout>
 
     <ImageView

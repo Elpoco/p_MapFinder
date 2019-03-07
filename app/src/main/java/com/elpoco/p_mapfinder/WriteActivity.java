@@ -63,24 +63,6 @@ public class WriteActivity extends AppCompatActivity {
         ivMap = findViewById(R.id.iv_map);
         permission();
 
-        interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId(String.valueOf(R.string.adUnitIdInterstitial));
-        AdRequest adRequest=new AdRequest.Builder().build();
-        interstitialAd.loadAd(adRequest);
-
-        interstitialAd.setAdListener(new AdListener(){
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-//                Toast.makeText(WriteActivity.this, "success", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-//                Toast.makeText(WriteActivity.this, ""+i, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -118,6 +100,24 @@ public class WriteActivity extends AppCompatActivity {
         String title = etTitle.getText().toString();
         String text = etText.getText().toString();
 
+        interstitialAd=new InterstitialAd(this);
+        interstitialAd.setAdUnitId(String.valueOf(R.string.adUnitIdInterstitial));
+        AdRequest adRequest=new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
+
+        interstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                interstitialAd.show();
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+        });
+
         if (title.length() == 0) {
             makeDialog("제목을 입력하세요.");
             return;
@@ -130,8 +130,6 @@ public class WriteActivity extends AppCompatActivity {
             makeDialog("사진을 선택하세요.");
             return;
         }
-
-        if (interstitialAd.isLoaded()) interstitialAd.show();
 
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override

@@ -2,24 +2,24 @@ package com.elpoco.p_mapfinder;
 
 public class CalendarItem {
     private String day;
-    private String time;
     private String name;
+    private String icon;
 
-    public CalendarItem(String day, String time, String name) {
+    public CalendarItem(String day, String name,String icon) {
         this.day = day;
-        this.time = time;
         this.name = name;
+        this.icon = icon;
     }
 
     public String getDay() {
         return day;
     }
 
-    public String getTime() {
-        return time;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 }

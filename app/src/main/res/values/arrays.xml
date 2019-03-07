@@ -57,6 +57,28 @@
         <item>황혼의 연무</item>
         <item>흑장미 교회당</item>
     </string-array>
+    <string-array name="map_name">
+        <item>지도 이름</item>
+        <item>물질의 ~</item>
+        <item>야수의 ~</item>
+        <item>정령의 ~</item>
+        <item>인간의 ~</item>
+        <item>기계의 ~</item>
+        <item>식물의 ~</item>
+        <item>불사자의 ~</item>
+        <item>악마의 ~</item>
+    </string-array>
+    <string-array name="map_name_answer">
+        <item>  </item>
+        <item>루테란 동부</item>
+        <item>루테란 서부</item>
+        <item>토토이크</item>
+        <item>애니츠</item>
+        <item>아르데타인</item>
+        <item>베른</item>
+        <item>슈사이어</item>
+        <item>전 대륙</item>
+    </string-array>
     <string-array name="map_song">
         <item>노래 선택</item>
         <item>용기의 노래</item>
@@ -262,5 +284,29 @@
         <item>	혹한의 안식처	</item>
         <item>	네벨호른	</item>
         <item>	얼어붙은 바다	</item>
+    </string-array>
+    <string-array name="calendar_icon">
+        <item>i13130685717.png</item>
+        <item>i13137409104.png</item>
+        <item>i13143885998.png</item>
+        <item>i13150933934.png</item>
+        <item>i13260914989.png</item>
+        <item>i13333890631.png</item>
+        <item>i13496415201.png</item>
+        <item>i13808411986.png</item>
+        <item>i13810362355.png</item>
+        <item>i13814838945.png</item>
+        <item>i14547476472.png</item>
+        <item>i14560496303.png</item>
+        <item>i14516678110.png</item>
+        <item>i14526287264.png</item>
+        <item>i14546448840.png</item>
+        <item>i14569323077.png</item>
+        <item>i14579875554.png</item>
+        <item>i14025344134.png</item>
+        <item>i13116451866.jpg</item>
+        <item>i14351622674.png</item>
+        <item>icon1.png</item>
+        <item>icon2.png</item>
     </string-array>
 </resources>

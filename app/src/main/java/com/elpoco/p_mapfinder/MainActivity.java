@@ -161,6 +161,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void clickCalendar(View view) {
+        startActivity(new Intent(this,CalendarActivity.class));
+    }
+
+    public void clickMaps(View view) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        View layout=getLayoutInflater().inflate(R.layout.dialog_maps,null);
+        builder.setView(layout);
+        builder.show();
+    }
+
     class backBtnThread extends Thread {
         @Override
         public void run() {
@@ -295,8 +306,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
+                case R.id.menu_map:
+                    startActivity(new Intent(MainActivity.this,MapActivity.class));
+                    break;
+                case R.id.menu_seamap:
+                    startActivity(new Intent(MainActivity.this, MapSeaActivity.class));
+                    break;
                 case R.id.menu_calendar:
                     startActivity(new Intent(MainActivity.this,CalendarActivity.class));
+                    break;
+                case R.id.menu_share:
+                    startActivity(new Intent(MainActivity.this, ShareActivity.class));
                     break;
                 case R.id.menu_my_page:
                     startActivity(new Intent(MainActivity.this,MyPageActivity.class));
