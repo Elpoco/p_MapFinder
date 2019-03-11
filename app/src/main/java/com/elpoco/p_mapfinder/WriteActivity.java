@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class WriteActivity extends AppCompatActivity {
 
@@ -63,6 +64,10 @@ public class WriteActivity extends AppCompatActivity {
         ivMap = findViewById(R.id.iv_map);
         permission();
 
+        interstitialAd=new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getResources().getString(R.string.adUnitIdInterstitial));
+        AdRequest adRequest=new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
     }
 
     @Override
@@ -100,24 +105,6 @@ public class WriteActivity extends AppCompatActivity {
         String title = etTitle.getText().toString();
         String text = etText.getText().toString();
 
-        interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId(String.valueOf(R.string.adUnitIdInterstitial));
-        AdRequest adRequest=new AdRequest.Builder().build();
-        interstitialAd.loadAd(adRequest);
-
-        interstitialAd.setAdListener(new AdListener(){
-            @Override
-            public void onAdLoaded() {
-                interstitialAd.show();
-                super.onAdLoaded();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-        });
-
         if (title.length() == 0) {
             makeDialog("제목을 입력하세요.");
             return;
@@ -126,7 +113,7 @@ public class WriteActivity extends AppCompatActivity {
             makeDialog("내용을 입력하세요.");
             return;
         }
-        if (imgPath.length()==0) {
+        if (imgPath==null||imgPath.length()<=14) {
             makeDialog("사진을 선택하세요.");
             return;
         }
@@ -174,6 +161,7 @@ public class WriteActivity extends AppCompatActivity {
                     public void run() {
                         Toast.makeText(WriteActivity.this, "게시물이 등록되었습니다.", Toast.LENGTH_SHORT).show();
                         finish();
+                        if(interstitialAd.isLoaded()) interstitialAd.show();
                     }
                 });
             }

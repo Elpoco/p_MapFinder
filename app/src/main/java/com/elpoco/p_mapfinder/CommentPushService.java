@@ -55,20 +55,16 @@ public class CommentPushService extends FirebaseMessagingService {
                     .setContentTitle(name)
                     .setContentText(msg)
                     .setAutoCancel(true);
+            if(G.isSound) builder.setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.mococo_seed));
+            if(!G.isVibrate) builder.setVibrate(new long[] {0,0,0,0});
 
             Intent intent = new Intent(this, IntroActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1010, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
 
-            Ringtone mococo=RingtoneManager.getRingtone(this,uri);
-
-            AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-
-
             notification=builder.build();
 
             notificationManager.notify(100, notification);
-            if(audioManager.getRingerMode()==AudioManager.RINGER_MODE_NORMAL) if(G.isSound) mococo.play();
         }
     }
 }

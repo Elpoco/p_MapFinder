@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/calendar_icon"
         android:src="@drawable/logo"
-        android:layout_width="70dp"
-        android:layout_height="70dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/calendar_tv_day"
@@ -31,7 +31,7 @@
         android:layout_below="@id/calendar_tv_day"
         android:layout_toRightOf="@id/calendar_icon"
         android:text="name"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/colorWhite" />
 
 </RelativeLayout>

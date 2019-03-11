@@ -19,6 +19,6 @@
         android:layout_height="150dp"
         android:onClick="clickSeaMap"
         android:src="@drawable/click_sea"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginLeft="8dp"/>
 
 </LinearLayout>
