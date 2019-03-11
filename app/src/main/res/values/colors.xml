@@ -5,7 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="mainBackGround">#191a1d</color>
-    <color name="textColor">#a6a6b6</color>
+    <!--<color name="textColor">#a6a6b6</color>-->
+    <color name="textColor">#FFFFFF</color>
     <color name="itemColor">#162022</color>
     <color name="listColor">#24282B</color>
 

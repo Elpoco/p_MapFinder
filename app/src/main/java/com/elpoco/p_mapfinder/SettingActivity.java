@@ -54,7 +54,11 @@ public class SettingActivity extends AppCompatActivity {
 
         tbSound.setChecked(G.isSound);
         tbVibrate.setChecked(G.isVibrate);
+
         MobileAds.initialize(this, String.valueOf(R.string.adMobId));
+        rewardedVideoAd= MobileAds.getRewardedVideoAdInstance(this);
+        rewardedVideoAd.setRewardedVideoAdListener(rewardedVideoAdListener);
+        rewardedVideoAd.loadAd(getResources().getString(R.string.adUnitIdReward),new AdRequest.Builder().build());
     }
 
     CompoundButton.OnCheckedChangeListener checkedChangeListener=new CompoundButton.OnCheckedChangeListener() {
@@ -99,16 +103,13 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void clickPlay(View view) {
-        rewardedVideoAd= MobileAds.getRewardedVideoAdInstance(this);
-        rewardedVideoAd.setRewardedVideoAdListener(rewardedVideoAdListener);
-        rewardedVideoAd.loadAd(String.valueOf(R.string.adUnitIdReward),new AdRequest.Builder().build());
+
+        if(rewardedVideoAd.isLoaded()) rewardedVideoAd.show();
     }
 
     RewardedVideoAdListener rewardedVideoAdListener=new RewardedVideoAdListener() {
         @Override
         public void onRewardedVideoAdLoaded() {
-            rewardedVideoAd.show();
-//            Toast.makeText(SettingActivity.this, "success", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -138,7 +139,6 @@ public class SettingActivity extends AppCompatActivity {
 
         @Override
         public void onRewardedVideoAdFailedToLoad(int i) {
-            Toast.makeText(SettingActivity.this, ""+i, Toast.LENGTH_SHORT).show();
         }
 
         @Override

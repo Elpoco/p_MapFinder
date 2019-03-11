@@ -37,7 +37,7 @@ public class IntroActivity extends AppCompatActivity {
         MobileAds.initialize(this, String.valueOf(R.string.adMobId));
 
 
-        timer.schedule(task, 2000);
+        timer.schedule(task, 1000);
     }
 
     TimerTask task = new TimerTask() {
