@@ -79,8 +79,8 @@ public class ShareActivity extends AppCompatActivity {
                 try {
                     String title, text, filePath, boardNum, nickName, profileUrl,token;
                     if (!loadItems.isEmpty()) loadItems.clear();
-                    if (response.length() < 6) loadData = 0;
-                    else loadData=response.length()-6;
+                    if (response.length() < 7) loadData = 0;
+                    else loadData=response.length()-7;
                     for (int i = response.length() - 1; i >=loadData; i--) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
