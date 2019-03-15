@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">로아 망원경</string>
-    <string name="name">지역명</string>
     <!--MyId-->
     <string name="adMobId">ca-app-pub-9439270851439639~3364457725</string>
     <string name="adUnitIdBanner">ca-app-pub-9439270851439639/7112131049</string>
@@ -12,11 +11,9 @@
     <!--<string name="adUnitIdInterstitial">ca-app-pub-3940256099942544/1033173712</string>-->
     <!--<string name="adUnitIdReward">ca-app-pub-3940256099942544/5224354917</string>-->
     <string name="notify">
-        - 프로필 사진을 설정할수 있습니다.\n
-        - 댓글이 달리면 알림기능이 추가되었습니다.\n
         - 설정에 문의하기 기능이 생겼습니다.\n
         - 내 게시물보기기능이 생겼습니다.\n
-        - 캘린더 기능 업데이트 했습니다. 계속 개발할 예정입니다.\n
+        - 캘린더 이미지 추가\n
         - 안되는 기능은 휴대폰 기종과 함께 문의하기에 써주시면 감사하겠습니다.\n
         - 데이터가 안나오면 네트워크 상태를 확인해주세요.\n\n
         [개발중인 단계]\n

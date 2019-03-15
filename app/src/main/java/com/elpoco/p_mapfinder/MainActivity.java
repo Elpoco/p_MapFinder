@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (!G.versionName.equals(version)) {dialogNotify.setVisibility(View.VISIBLE); G.versionName=version;}
+        if (!G.versionName.equals(version)) dialogNotify.setVisibility(View.VISIBLE);
 
         Glide.with(this).load(G.profileUrl).into(hIvProfile);
         hTvNickname.setText(G.nickName);
@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public void clickDialogClose(View view) {
         dialogNotify.setVisibility(View.GONE);
         G.isFirst = false;
+        G.versionName=version;
     }
 
     @Override
@@ -225,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void login() {
-        G.login = true;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_nickname, null);
         etNickname = view.findViewById(R.id.dialog_et_nickname);
@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 DatabaseReference profileRef = firebaseDatabase.getReference("profiles");
                 DatabaseReference profileToken = profileRef.child(G.nickName).child("Token");
                 profileToken.setValue(G.token);
+                G.login = true;
                 dialog.dismiss();
             }
         });
