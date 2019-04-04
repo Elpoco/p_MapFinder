@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_my_page"
+        android:title="내가 쓴 게시물" />
+
+    <item
         android:id="@+id/menu_map"
         android:title="지도"/>
 
@@ -16,10 +20,5 @@
     <item
         android:id="@+id/menu_share"
         android:title="지도 게시판"/>
-
-    <item
-        android:id="@+id/menu_my_page"
-        android:title="내가 쓴 게시물" />
-
 
 </menu>

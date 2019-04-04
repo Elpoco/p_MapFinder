@@ -33,8 +33,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -85,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        version();
+
         dialogNotify = findViewById(R.id.dialog_notify);
         if (!G.login) login();
 
@@ -108,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, G.SELECT_IMAGE);
             }
         });
-
     }
 
     public void clickMap(View view) {
@@ -330,5 +334,38 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    void version() {
+        DatabaseReference versionRef=FirebaseDatabase.getInstance().getReference().child("version");
+        versionRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String serverVersion;
+                serverVersion=dataSnapshot.getValue().toString();
+
+                if(serverVersion.equals(G.versionName)) return;
+                new AlertDialog.Builder(MainActivity.this).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.elpoco.p_mapfinder")));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.elpoco.p_mapfinder")));
+                        }
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).setMessage("새로운 버전이 나왔습니다. \n업데이트 하시겠습니까?").show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 }

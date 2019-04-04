@@ -97,9 +97,9 @@ public class CalendarActivity extends AppCompatActivity {
                             }
                         }
                     }.execute();
-                    if(!isData)Thread.sleep(1000 * 10);
+                    if(!isData)Thread.sleep(1000 * 60);
                     else {
-                        Thread.sleep(1000*5);
+                        Thread.sleep(1000*10);
                     }
                 }
             } catch (InterruptedException e) {
@@ -131,6 +131,12 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onStop() {
         timerThread.isRun = false;
         super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        timerThread.isRun = true;
+        super.onResume();
     }
 
     public void clickLogo(View view) {

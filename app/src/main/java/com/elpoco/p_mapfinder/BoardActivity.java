@@ -213,7 +213,7 @@ public class BoardActivity extends AppCompatActivity {
 
         multiPartRequest.addStringParam("boardName",item.getTitle());
         multiPartRequest.addStringParam("nickName",G.nickName);
-        multiPartRequest.addStringParam("token",item.getToken());
+        if(!item.getToken().equals(G.token)) multiPartRequest.addStringParam("token",item.getToken());
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
