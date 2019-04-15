@@ -31,6 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
     String version;
 
+    AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        version();
 
         dialogNotify = findViewById(R.id.dialog_notify);
         if (!G.login) login();
@@ -99,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+        version();
 
         if (!G.versionName.equals(version)) dialogNotify.setVisibility(View.VISIBLE);
 
@@ -113,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, G.SELECT_IMAGE);
             }
         });
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     public void clickMap(View view) {
@@ -342,8 +351,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String serverVersion;
                 serverVersion=dataSnapshot.getValue().toString();
-
-                if(serverVersion.equals(G.versionName)) return;
+                if(serverVersion.equals(version)) return;
                 new AlertDialog.Builder(MainActivity.this).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
