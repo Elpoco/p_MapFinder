@@ -25,6 +25,7 @@ public class MapSeaActivity extends AppCompatActivity {
     ImageView pin;
 
     boolean scaleChange = false;
+    boolean mapChange=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,5 +82,16 @@ public class MapSeaActivity extends AppCompatActivity {
 
     public void clickLogo(View view) {
         finish();
+    }
+
+    public void clickMapChange(View view) {
+        if(!mapChange){
+            pv.setImageResource(R.drawable.background_seamap_name);
+            mapChange=true;
+        }else{
+            pv.setImageResource(R.drawable.background_seamap);
+            mapChange=false;
+        }
+
     }
 }
