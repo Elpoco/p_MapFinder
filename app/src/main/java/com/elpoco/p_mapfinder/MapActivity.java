@@ -185,11 +185,11 @@ public class MapActivity extends AppCompatActivity {
                             {5},
                             {8},
                             {12, 17, 19},
-                            {10},
+                            {9},
                             {18},
                             {13},
                             {11, 15, 16},
-                            {2, 3, 9},
+                            {2, 3, 10},
                             {4, 6, 7, 14}
                     };
                     sp_1.setSelection(0);
