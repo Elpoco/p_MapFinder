@@ -4,6 +4,11 @@
     android:layout_height="400dp"
     android:background="@color/mainBackGround">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_height="400dp" />
+
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/dialog_pv"
         android:layout_width="match_parent"
