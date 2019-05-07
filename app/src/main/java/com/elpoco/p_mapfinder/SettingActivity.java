@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -27,6 +28,8 @@ public class SettingActivity extends AppCompatActivity {
     SoundPool soundPool;
     Vibrator vibrator;
 
+    ImageView ivSound,ivVibrate;
+
     int alarm;
 
     RewardedVideoAd rewardedVideoAd;
@@ -43,6 +46,8 @@ public class SettingActivity extends AppCompatActivity {
 
         tbSound=findViewById(R.id.tb_sound);
         tbVibrate=findViewById(R.id.tb_vibrate);
+        ivSound=findViewById(R.id.iv_sound);
+        ivVibrate=findViewById(R.id.iv_vibrate);
 
         tbSound.setOnCheckedChangeListener(checkedChangeListener);
         tbVibrate.setOnCheckedChangeListener(checkedChangeListener);
@@ -67,11 +72,13 @@ public class SettingActivity extends AppCompatActivity {
             switch (buttonView.getId()) {
                 case R.id.tb_sound:
                     G.isSound=isChecked;
-                    if (G.isSound) soundPool.play(alarm, 1, 1, 10, 0, 1);
+                    if (G.isSound){ soundPool.play(alarm, 1, 1, 10, 0, 1); ivSound.setImageResource(R.drawable.icon_sound_on);}
+                    else ivSound.setImageResource(R.drawable.icon_sound_off);
                     break;
                 case R.id.tb_vibrate:
                     G.isVibrate=isChecked;
-                    if (G.isVibrate) vibrator.vibrate(500);
+                    if (G.isVibrate) {vibrator.vibrate(500); ivVibrate.setImageResource(R.drawable.icon_vibration_on);}
+                    else ivVibrate.setImageResource(R.drawable.icon_vibration_off);
                     break;
             }
         }

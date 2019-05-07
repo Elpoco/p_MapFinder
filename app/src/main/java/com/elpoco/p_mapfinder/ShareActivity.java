@@ -119,8 +119,8 @@ public class ShareActivity extends AppCompatActivity {
                 try {
                     String title, text, filePath, boardNum, nickName, profileUrl,token;
                     lastData=loadData;
-                    if(loadData-3<0) {lastData=3; isData=false;}
-                    for (int i = loadData-1; i >=lastData-3; i--) {
+                    if(loadData-5<0) {lastData=5; isData=false;}
+                    for (int i = loadData-1; i >=lastData-5; i--) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         boardNum = jsonObject.getString("num");
@@ -137,7 +137,7 @@ public class ShareActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                     progressBarBottom.setVisibility(View.INVISIBLE);
                     isFirst=true;
-                    if(loadData-3>=0) loadData+=-3;
+                    if(loadData-5>=0) loadData+=-5;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

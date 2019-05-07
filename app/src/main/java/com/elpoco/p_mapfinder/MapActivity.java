@@ -26,7 +26,7 @@ public class MapActivity extends AppCompatActivity {
     TextView tv;
     TextView inventory;
 
-    String[] mapNameSong = {"", "루테란", "토토이크", "유디아", "베른", "아르데타인\n아르테미스", "애니츠", "슈샤이어"};
+    String[] mapNameSong = {"", "루테란", "토토이크", "유디아", "베른", "아르데타인\n아르테미스", "애니츠\n로헨델", "슈샤이어"};
     String[] mapName = {"아르테미스", "유디아", "루테란 서부", "루테란 동부", "토토이크", "애니츠", "아르데타인", "베른", "슈사이어", "로헨델", ""};
 
     AdView adView;
