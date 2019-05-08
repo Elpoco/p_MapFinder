@@ -150,11 +150,11 @@
                     android:layout_marginTop="8dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp" />
-                <RelativeLayout
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:clickable="true"
-                    android:onClick="clickQnA"></RelativeLayout>
+                    android:onClick="clickQnA"></ImageView>
             </RelativeLayout>
 
         </LinearLayout>
@@ -191,11 +191,11 @@
                     android:layout_marginRight="16dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="8dp" />
-                <RelativeLayout
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:clickable="true"
-                    android:onClick="clickPlay"></RelativeLayout>
+                    android:onClick="clickPlay"></ImageView>
             </RelativeLayout>
 
         </LinearLayout>

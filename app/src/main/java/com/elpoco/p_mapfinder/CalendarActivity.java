@@ -97,9 +97,11 @@ public class CalendarActivity extends AppCompatActivity {
                             }
                         }
                     }.execute();
-                    if(!isData)Thread.sleep(1000 * 60);
+                    if(!isData){
+                        Thread.sleep(1000 * 30);
+                    }
                     else {
-                        Thread.sleep(1000*10);
+                        Thread.sleep(1000*15);
                     }
                 }
             } catch (InterruptedException e) {
