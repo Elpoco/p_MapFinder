@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="@color/listColor"
-    android:padding="8dp">
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:background="@color/listColor"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/calendar_icon"
+            android:src="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/calendar_tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="day"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/calendar_icon"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/calendar_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="time"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="8dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/calendar_tv_name"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendar_tv_day"
+            android:layout_toRightOf="@id/calendar_icon"
+            android:text="name"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
 
     <ImageView
-        android:id="@+id/calendar_icon"
-        android:src="@drawable/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/calendar_tv_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="day"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/calendar_icon"
-        android:textSize="20sp"
-        android:textColor="@color/colorWhite" />
-
-    <TextView
-        android:id="@+id/calendar_tv_name"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/calendar_tv_day"
-        android:layout_toRightOf="@id/calendar_icon"
-        android:text="name"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhite" />
+        android:layout_width="match_parent"
+        android:layout_below="@id/layout"
+        android:layout_height="2dp"
+        android:background="@color/mainBackGround"/>
 
 </RelativeLayout>

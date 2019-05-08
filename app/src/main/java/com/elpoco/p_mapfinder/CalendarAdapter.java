@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class CalendarAdapter extends RecyclerView.Adapter {
@@ -42,8 +44,25 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         VHCalendar vh= (VHCalendar) viewHolder;
         CalendarItem item=items.get(i);
-        vh.tvDay.setText(item.getDay());
+        String day=item.getDay();
+        day=day.substring(5);
+        vh.tvDay.setText(day);
         vh.tvName.setText(item.getName());
+//
+//        long now=System.currentTimeMillis();
+//        Date date=new Date(now);
+//        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+//        day=day.substring(6);
+//        String time=sdf.format(date);
+//
+//        String[] days=day.split(":");
+//        String[] times=time.split(":");
+//        int hour=Integer.parseInt(days[0])-Integer.parseInt(times[0]);
+//        int min=Integer.parseInt(days[1])-Integer.parseInt(times[1]);
+//        String h=hour+":";
+//        if(hour==0) h="";
+//
+        vh.tvTime.setText("");
         int index;
         for (index = 0; index < icons.length; index++) {
             if(item.getIcon().equals(icons[index])) break;
@@ -57,12 +76,13 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     }
 
     class VHCalendar extends RecyclerView.ViewHolder {
-        TextView tvDay,tvName;
+        TextView tvDay,tvName,tvTime;
         ImageView iv;
         public VHCalendar(@NonNull View itemView) {
             super(itemView);
             tvDay= itemView.findViewById(R.id.calendar_tv_day);
             tvName= itemView.findViewById(R.id.calendar_tv_name);
+            tvTime=itemView.findViewById(R.id.calendar_tv_time);
             iv=itemView.findViewById(R.id.calendar_icon);
         }
     }
