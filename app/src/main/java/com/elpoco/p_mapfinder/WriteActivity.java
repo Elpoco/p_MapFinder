@@ -121,10 +121,6 @@ public class WriteActivity extends AppCompatActivity {
             makeDialog("내용을 입력하세요.");
             return;
         }
-        if (imgPath==null||imgPath.length()<=14) {
-            makeDialog("사진을 선택하세요.");
-            return;
-        }
 
         SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
             @Override

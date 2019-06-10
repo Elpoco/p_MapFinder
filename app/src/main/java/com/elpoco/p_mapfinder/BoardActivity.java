@@ -42,7 +42,7 @@ public class BoardActivity extends AppCompatActivity {
     ScrollView scrollView;
     CircleImageView ivProfile;
     TextView tvTitle, tvNickname, tvText;
-    ImageView ivMap;
+    ImageView ivMap, ivMmap;
     RecyclerView recyclerView;
     EditText etComment;
 
@@ -70,6 +70,7 @@ public class BoardActivity extends AppCompatActivity {
         tvNickname=findViewById(R.id.tv_nickname);
         tvText = findViewById(R.id.tv_text);
         ivMap = findViewById(R.id.iv_map);
+        ivMmap=findViewById(R.id.iv_mmap);
         etComment = findViewById(R.id.et_comment);
 
         recyclerView = findViewById(R.id.list_comment);
@@ -91,6 +92,7 @@ public class BoardActivity extends AppCompatActivity {
         thisBoardNum = Integer.parseInt(item.getBoardNum());
 
         loadComment();
+        if(item.getFilePath().length()<=51) { ivMap.setVisibility(View.GONE); ivMmap.setVisibility(View.GONE);}
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this) {
             @Override
