@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board.comment;
 
 public class CommentItem {
     private String nickName;

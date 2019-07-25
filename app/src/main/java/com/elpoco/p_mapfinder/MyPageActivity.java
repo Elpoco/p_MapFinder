@@ -15,6 +15,8 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.elpoco.p_mapfinder.board.share.ShareAdapter;
+import com.elpoco.p_mapfinder.board.share.ShareItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

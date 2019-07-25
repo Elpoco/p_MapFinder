@@ -7,7 +7,7 @@
     android:background="@color/mainBackGround"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CalendarActivity">
+    tools:context=".calendar.CalendarActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

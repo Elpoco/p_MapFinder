@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board;
 
 import android.app.AlertDialog;
 import android.os.Handler;
@@ -24,6 +24,11 @@ import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.elpoco.p_mapfinder.G;
+import com.elpoco.p_mapfinder.R;
+import com.elpoco.p_mapfinder.board.comment.CommentAdapter;
+import com.elpoco.p_mapfinder.board.comment.CommentItem;
+import com.elpoco.p_mapfinder.board.share.ShareItem;
 import com.github.chrisbanes.photoview.PhotoView;
 
 
@@ -132,7 +137,7 @@ public class BoardActivity extends AppCompatActivity {
 
         multiPartRequest.addStringParam("boardNum", boardNum);
         multiPartRequest.addStringParam("comment", comment);
-        multiPartRequest.addStringParam("profileUrl",G.profileUrl);
+        multiPartRequest.addStringParam("profileUrl", G.profileUrl);
         multiPartRequest.addStringParam("nickName",G.nickName);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);

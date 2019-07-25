@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board.share;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -18,6 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.elpoco.p_mapfinder.G;
+import com.elpoco.p_mapfinder.R;
+import com.elpoco.p_mapfinder.board.WriteActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

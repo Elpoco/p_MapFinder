@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -29,10 +29,10 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.ads.AdListener;
+import com.elpoco.p_mapfinder.G;
+import com.elpoco.p_mapfinder.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 
 public class WriteActivity extends AppCompatActivity {
 

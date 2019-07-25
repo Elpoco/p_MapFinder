@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/mainBackGround"
-    tools:context=".WriteActivity">
+    tools:context=".board.WriteActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

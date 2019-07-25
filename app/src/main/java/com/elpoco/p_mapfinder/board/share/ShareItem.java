@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board.share;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,10 +1,8 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.calendar;
 
 import android.content.Context;
-import android.renderscript.Script;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.elpoco.p_mapfinder.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class CalendarAdapter extends RecyclerView.Adapter {

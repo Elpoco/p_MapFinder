@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.calendar;
 
 public class CalendarItem {
     private String day;

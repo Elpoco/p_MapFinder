@@ -20,7 +20,7 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/adMobId"/>
-        <activity android:name=".CalendarActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".calendar.CalendarActivity" android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".QnAActivity" android:parentActivityName=".SettingActivity"/>
         <activity
             android:name=".IntroActivity"
@@ -43,7 +43,7 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShareActivity"
+            android:name=".board.share.ShareActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -55,15 +55,15 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BoardActivity"
-            android:parentActivityName=".ShareActivity"
+            android:name=".board.BoardActivity"
+            android:parentActivityName=".board.share.ShareActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WriteActivity"
-            android:parentActivityName=".ShareActivity"
+            android:name=".board.WriteActivity"
+            android:parentActivityName=".board.share.ShareActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".CommentPushService">
+        <service android:name=".board.comment.CommentPushService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

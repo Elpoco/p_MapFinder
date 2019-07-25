@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board.share;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.elpoco.p_mapfinder.R;
+import com.elpoco.p_mapfinder.board.BoardActivity;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class ShareAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int index=getAdapterPosition();
-                    context.startActivity(new Intent(context,BoardActivity.class).putExtra("item",items.get(index)));
+                    context.startActivity(new Intent(context, BoardActivity.class).putExtra("item",items.get(index)));
                 }
             });
         }

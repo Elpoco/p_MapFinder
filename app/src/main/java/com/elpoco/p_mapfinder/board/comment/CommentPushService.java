@@ -1,4 +1,4 @@
-package com.elpoco.p_mapfinder;
+package com.elpoco.p_mapfinder.board.comment;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -15,6 +15,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 
+import com.elpoco.p_mapfinder.G;
+import com.elpoco.p_mapfinder.IntroActivity;
+import com.elpoco.p_mapfinder.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
